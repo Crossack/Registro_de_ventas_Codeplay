@@ -1,0 +1,40 @@
+## Compilación y binarios (.NET)
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## Configuración y caché de Visual Studio
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.userprefs
+
+## Paquetes NuGet y dependencias
+*.nupkg
+*.snupkg
+packages/
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.assets.json
+
+## Herramientas de diagnóstico, pruebas y cobertura
+TestResults/
+*.VisualState.xml
+*.coverage
+*.coveragexml
+
+## Archivos generados por publicación local o base de datos
+*.publishsettings
+*.pubxml
+app.publish/
+*.mdf
+*.ldf
+
+## Archivos del sistema operativo y editores secundarios
+.DS_Store
+Thumbs.db
+.vscode/
