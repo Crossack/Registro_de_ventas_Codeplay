@@ -1,5 +1,7 @@
 using Microsoft.Data.SqlClient;
 using Registro_de_ventas_Codeplay.Sql;
+using Registro_de_ventas_Codeplay.Classes;
+using System.Drawing;
 
 namespace Registro_de_ventas_Codeplay
 {
@@ -44,29 +46,43 @@ namespace Registro_de_ventas_Codeplay
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            if (txtUsuario.Text == "Crossack" && txtContraseña.Text == "hola1234")
+            string query = @"SELECT u.IdUsuario, u.NombreUsuario, r.Nombre AS Rol 
+                 FROM LoginUsuarios u 
+                 INNER JOIN Roles r ON u.IdRol = r.IdRol 
+                 WHERE u.NombreUsuario = @usuario AND u.PasswordHash = @password";
+
+            using (SqlConnection conexion = db.CrearConexion())
+            using (SqlCommand cmd = new SqlCommand(query, conexion))
             {
-                MessageBox.Show(
-                    "Bienvenido Crossack :)",
-                    "Inicio de sesion",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            else if (txtUsuario.Text == "ProNoobMaster10" && txtContraseña.Text == "soypro10")
-            {
-                MessageBox.Show(
-                    "Bienvenido ProNoobMaster10, activando modo pro hacker",
-                    "Inicio de sesion",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show(
-                    "Usuario o contraseñas incorrectas!",
-                    "Inicio de sesion",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text.Trim());
+                cmd.Parameters.AddWithValue("@password", txtContraseña.Text); // Idealmente con hash
+                conexion.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        SesionActiva.IdUsuario = reader.GetInt32(0);
+                        SesionActiva.NombreUsuario = reader.GetString(1);
+                        SesionActiva.RolUsuario = reader.GetString(2);
+
+                        MessageBox.Show(
+                            "Bienvenido Crossack :)",
+                            "Inicio de sesion exitoso",
+                            MessageBoxButtons.OK);
+
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                            "Credenciales inválidas.",
+                            "Error al iniciar sesion",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        txtContraseña.Focus();
+                    }
+                }
             }
         }
 

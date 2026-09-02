@@ -62,6 +62,7 @@
             btnVerContraseña.Name = "btnVerContraseña";
             btnVerContraseña.Size = new Size(28, 27);
             btnVerContraseña.TabIndex = 4;
+            btnVerContraseña.TabStop = false;
             btnVerContraseña.Text = "👁️";
             btnVerContraseña.UseVisualStyleBackColor = true;
             btnVerContraseña.Click += BtnVerContraseña_Click;
