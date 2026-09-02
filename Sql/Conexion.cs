@@ -9,15 +9,38 @@ namespace Registro_de_ventas_Codeplay.Sql
 {
     public class Conexion
     {
-        private readonly string cadenaConexion =
-            """Server=DESKTOP-KPD1OU0\SQLEXPRESS;""" +
-            "Database=BDRegistroEstudiantes;" +
-            "Integrated Security=True;" +
-            "TrustServerCertificate=True;";
+        private const string archivoConexion = "conexion.txt";
+
+        public string ObtenerConexion()
+        {
+            string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, archivoConexion);
+
+            if (!File.Exists(ruta))
+            {
+                string plantilla = """Server=localhost\SQLEXPRESS;""" +
+                    "Database=BDRegistroEstudiantes;" + 
+                    "Trusted_Connection=True;" +
+                    "TrustServerCertificate=True;";
+                File.WriteAllText(ruta, plantilla);
+
+                MessageBox.Show(
+                    $"No se encontró el archivo '{archivoConexion}'.\n" +
+                    "Se ha creado uno de ejemplo en la carpeta de ejecución.\n" +
+                    "Por favor revisa la cadena de conexión.",
+                    "Configuración",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return plantilla;
+            }
+
+            return File.ReadAllText(ruta).Trim();
+        }
 
         public SqlConnection CrearConexion()
         {
-            return new SqlConnection(cadenaConexion);
+            return new SqlConnection(ObtenerConexion());
         }
     }
 }

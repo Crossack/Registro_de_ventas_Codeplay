@@ -38,3 +38,6 @@ app.publish/
 .DS_Store
 Thumbs.db
 .vscode/
+
+## Configuración de conexión
+conexion.txt
