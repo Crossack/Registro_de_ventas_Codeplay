@@ -18,7 +18,7 @@ namespace Registro_de_ventas_Codeplay.Sql
             if (!File.Exists(ruta))
             {
                 string plantilla = """Server=localhost\SQLEXPRESS;""" +
-                    "Database=BDRegistroEstudiantes;" + 
+                    "Database=BDRegistroVentas;" + 
                     "Trusted_Connection=True;" +
                     "TrustServerCertificate=True;";
                 File.WriteAllText(ruta, plantilla);
