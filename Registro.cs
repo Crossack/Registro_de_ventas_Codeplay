@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// Clase sin usar, posible clase innecesaria, considerar borrarlo en el futuro
+
 namespace Registro_de_ventas_Codeplay
 {
     public class Registro

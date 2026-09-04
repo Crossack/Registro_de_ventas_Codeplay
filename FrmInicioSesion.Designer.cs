@@ -48,11 +48,9 @@
             gbxLogin.Controls.Add(lblContraseña);
             gbxLogin.Controls.Add(txtUsuario);
             gbxLogin.Controls.Add(lblNombUsuario);
-            gbxLogin.Location = new Point(14, 16);
-            gbxLogin.Margin = new Padding(3, 4, 3, 4);
+            gbxLogin.Location = new Point(12, 12);
             gbxLogin.Name = "gbxLogin";
-            gbxLogin.Padding = new Padding(3, 4, 3, 4);
-            gbxLogin.Size = new Size(457, 284);
+            gbxLogin.Size = new Size(400, 213);
             gbxLogin.TabIndex = 0;
             gbxLogin.TabStop = false;
             gbxLogin.Text = "Inicio de sesion";
@@ -60,10 +58,9 @@
             // btnVerContraseña
             // 
             btnVerContraseña.Font = new Font("Segoe UI", 10F);
-            btnVerContraseña.Location = new Point(344, 168);
-            btnVerContraseña.Margin = new Padding(3, 4, 3, 4);
+            btnVerContraseña.Location = new Point(301, 126);
             btnVerContraseña.Name = "btnVerContraseña";
-            btnVerContraseña.Size = new Size(32, 36);
+            btnVerContraseña.Size = new Size(28, 27);
             btnVerContraseña.TabIndex = 4;
             btnVerContraseña.TabStop = false;
             btnVerContraseña.Text = "👁️";
@@ -72,45 +69,42 @@
             // 
             // txtContraseña
             // 
-            txtContraseña.Location = new Point(211, 171);
-            txtContraseña.Margin = new Padding(3, 4, 3, 4);
+            txtContraseña.Location = new Point(185, 128);
             txtContraseña.Name = "txtContraseña";
-            txtContraseña.Size = new Size(125, 27);
+            txtContraseña.Size = new Size(110, 23);
             txtContraseña.TabIndex = 3;
             txtContraseña.UseSystemPasswordChar = true;
             // 
             // lblContraseña
             // 
             lblContraseña.AutoSize = true;
-            lblContraseña.Location = new Point(109, 175);
+            lblContraseña.Location = new Point(95, 131);
             lblContraseña.Name = "lblContraseña";
-            lblContraseña.Size = new Size(86, 20);
+            lblContraseña.Size = new Size(70, 15);
             lblContraseña.TabIndex = 2;
             lblContraseña.Text = "Contraseña:";
             // 
             // txtUsuario
             // 
-            txtUsuario.Location = new Point(211, 81);
-            txtUsuario.Margin = new Padding(3, 4, 3, 4);
+            txtUsuario.Location = new Point(185, 61);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(125, 27);
+            txtUsuario.Size = new Size(110, 23);
             txtUsuario.TabIndex = 1;
             // 
             // lblNombUsuario
             // 
             lblNombUsuario.AutoSize = true;
-            lblNombUsuario.Location = new Point(59, 85);
+            lblNombUsuario.Location = new Point(52, 64);
             lblNombUsuario.Name = "lblNombUsuario";
-            lblNombUsuario.Size = new Size(142, 20);
+            lblNombUsuario.Size = new Size(113, 15);
             lblNombUsuario.TabIndex = 0;
             lblNombUsuario.Text = "Nombre de Usuario:";
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(202, 317);
-            btnLogin.Margin = new Padding(3, 4, 3, 4);
+            btnLogin.Location = new Point(177, 238);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(102, 36);
+            btnLogin.Size = new Size(89, 27);
             btnLogin.TabIndex = 1;
             btnLogin.Text = "Continuar";
             btnLogin.UseVisualStyleBackColor = true;
@@ -118,10 +112,9 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(390, 447);
-            btnSalir.Margin = new Padding(3, 4, 3, 4);
+            btnSalir.Location = new Point(341, 335);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(81, 36);
+            btnSalir.Size = new Size(71, 27);
             btnSalir.TabIndex = 2;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
@@ -130,9 +123,9 @@
             // lnkContraseña
             // 
             lnkContraseña.AutoSize = true;
-            lnkContraseña.Location = new Point(25, 455);
+            lnkContraseña.Location = new Point(22, 341);
             lnkContraseña.Name = "lnkContraseña";
-            lnkContraseña.Size = new Size(149, 20);
+            lnkContraseña.Size = new Size(119, 15);
             lnkContraseña.TabIndex = 3;
             lnkContraseña.TabStop = true;
             lnkContraseña.Text = "Olvide mi contraseña";
@@ -140,15 +133,16 @@
             // 
             // FrmInicioSesion
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AcceptButton = btnLogin;
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(486, 499);
+            CancelButton = btnSalir;
+            ClientSize = new Size(425, 374);
             Controls.Add(lnkContraseña);
             Controls.Add(btnSalir);
             Controls.Add(btnLogin);
             Controls.Add(gbxLogin);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FrmInicioSesion";
             SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterScreen;

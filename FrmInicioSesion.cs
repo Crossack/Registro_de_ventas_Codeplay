@@ -66,12 +66,12 @@ namespace Registro_de_ventas_Codeplay
                         SesionActiva.RolUsuario = reader.GetString(2);
 
                         MessageBox.Show(
-                            "Bienvenido Crossack :)",
+                            $"Bienvenido {SesionActiva.NombreUsuario} :)",
                             "Inicio de sesion exitoso",
                             MessageBoxButtons.OK);
 
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        DialogResult = DialogResult.OK;
+                        Close();
                     }
                     else
                     {
@@ -80,6 +80,7 @@ namespace Registro_de_ventas_Codeplay
                             "Error al iniciar sesion",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
+                        txtContraseña.Clear();
                         txtContraseña.Focus();
                     }
                 }

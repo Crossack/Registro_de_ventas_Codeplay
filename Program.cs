@@ -10,10 +10,16 @@ namespace Registro_de_ventas_Codeplay
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmRegistros());
 
-
+            using (FrmInicioSesion Login = new FrmInicioSesion())
+            {
+                if (Login.ShowDialog() == DialogResult.OK)
+                {
+                    Application.Run(new frmRegistros());
+                }
+            }
         }
     }
 }
