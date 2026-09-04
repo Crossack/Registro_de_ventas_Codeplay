@@ -31,17 +31,19 @@
             label1 = new Label();
             txtUsuario = new TextBox();
             grpRegistroEst = new GroupBox();
-            label2 = new Label();
-            txtCorreo = new TextBox();
-            label3 = new Label();
-            dtpFechaNac = new DateTimePicker();
-            label4 = new Label();
+            txtContrasenia = new TextBox();
+            label5 = new Label();
             txtPais = new TextBox();
+            label4 = new Label();
+            dtpFechaNac = new DateTimePicker();
+            label3 = new Label();
+            txtCorreo = new TextBox();
+            label2 = new Label();
             btnRegistrar = new Button();
             btnSalir = new Button();
-            dataGridView1 = new DataGridView();
+            dgvRegistros = new DataGridView();
             grpRegistroEst.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvRegistros).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -62,6 +64,8 @@
             // 
             // grpRegistroEst
             // 
+            grpRegistroEst.Controls.Add(txtContrasenia);
+            grpRegistroEst.Controls.Add(label5);
             grpRegistroEst.Controls.Add(txtPais);
             grpRegistroEst.Controls.Add(label4);
             grpRegistroEst.Controls.Add(dtpFechaNac);
@@ -72,87 +76,106 @@
             grpRegistroEst.Controls.Add(txtUsuario);
             grpRegistroEst.Location = new Point(12, 12);
             grpRegistroEst.Name = "grpRegistroEst";
-            grpRegistroEst.Size = new Size(637, 298);
+            grpRegistroEst.Size = new Size(631, 339);
             grpRegistroEst.TabIndex = 2;
             grpRegistroEst.TabStop = false;
-            grpRegistroEst.Text = "Registro";
+            grpRegistroEst.Text = "Crea tu cuenta ";
             // 
-            // label2
+            // txtContrasenia
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(6, 100);
-            label2.Name = "label2";
-            label2.Size = new Size(152, 20);
-            label2.TabIndex = 2;
-            label2.Text = "Fecha de Nacimiento:";
+            txtContrasenia.Location = new Point(274, 102);
+            txtContrasenia.Name = "txtContrasenia";
+            txtContrasenia.Size = new Size(125, 27);
+            txtContrasenia.TabIndex = 9;
             // 
-            // txtCorreo
+            // label5
             // 
-            txtCorreo.Location = new Point(274, 144);
-            txtCorreo.Name = "txtCorreo";
-            txtCorreo.Size = new Size(125, 27);
-            txtCorreo.TabIndex = 3;
+            label5.AutoSize = true;
+            label5.Location = new Point(6, 109);
+            label5.Name = "label5";
+            label5.Size = new Size(86, 20);
+            label5.TabIndex = 8;
+            label5.Text = "Contraseña:";
             // 
-            // label3
+            // txtPais
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(6, 151);
-            label3.Name = "label3";
-            label3.Size = new Size(135, 20);
-            label3.TabIndex = 4;
-            label3.Text = "Correo Electronico:";
-            // 
-            // dtpFechaNac
-            // 
-            dtpFechaNac.Location = new Point(274, 93);
-            dtpFechaNac.Name = "dtpFechaNac";
-            dtpFechaNac.Size = new Size(291, 27);
-            dtpFechaNac.TabIndex = 5;
+            txtPais.Location = new Point(274, 285);
+            txtPais.Name = "txtPais";
+            txtPais.Size = new Size(125, 27);
+            txtPais.TabIndex = 7;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 207);
+            label4.Location = new Point(6, 292);
             label4.Name = "label4";
             label4.Size = new Size(37, 20);
             label4.TabIndex = 6;
             label4.Text = "Pais:";
             // 
-            // txtPais
+            // dtpFechaNac
             // 
-            txtPais.Location = new Point(274, 200);
-            txtPais.Name = "txtPais";
-            txtPais.Size = new Size(125, 27);
-            txtPais.TabIndex = 7;
+            dtpFechaNac.Location = new Point(274, 156);
+            dtpFechaNac.Name = "dtpFechaNac";
+            dtpFechaNac.Size = new Size(291, 27);
+            dtpFechaNac.TabIndex = 5;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(6, 223);
+            label3.Name = "label3";
+            label3.Size = new Size(135, 20);
+            label3.TabIndex = 4;
+            label3.Text = "Correo Electronico:";
+            // 
+            // txtCorreo
+            // 
+            txtCorreo.Location = new Point(274, 216);
+            txtCorreo.Name = "txtCorreo";
+            txtCorreo.Size = new Size(125, 27);
+            txtCorreo.TabIndex = 3;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(6, 163);
+            label2.Name = "label2";
+            label2.Size = new Size(152, 20);
+            label2.TabIndex = 2;
+            label2.Text = "Fecha de Nacimiento:";
             // 
             // btnRegistrar
             // 
-            btnRegistrar.Location = new Point(12, 331);
+            btnRegistrar.Location = new Point(12, 383);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(94, 29);
             btnRegistrar.TabIndex = 8;
             btnRegistrar.Text = "&Registrar";
             btnRegistrar.UseVisualStyleBackColor = true;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(137, 331);
+            btnSalir.Location = new Point(133, 383);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(94, 29);
             btnSalir.TabIndex = 9;
             btnSalir.Text = "&Salir";
             btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
-            // dataGridView1
+            // dgvRegistros
             // 
-            dataGridView1.BackgroundColor = Color.Gainsboro;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Right;
-            dataGridView1.Location = new Point(727, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(426, 606);
-            dataGridView1.TabIndex = 10;
+            dgvRegistros.BackgroundColor = Color.Gainsboro;
+            dgvRegistros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvRegistros.Dock = DockStyle.Right;
+            dgvRegistros.Location = new Point(727, 0);
+            dgvRegistros.Name = "dgvRegistros";
+            dgvRegistros.ReadOnly = true;
+            dgvRegistros.RowHeadersWidth = 51;
+            dgvRegistros.Size = new Size(426, 606);
+            dgvRegistros.TabIndex = 10;
             // 
             // frmRegistros
             // 
@@ -161,15 +184,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnSalir;
             ClientSize = new Size(1153, 606);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvRegistros);
             Controls.Add(btnSalir);
             Controls.Add(btnRegistrar);
             Controls.Add(grpRegistroEst);
             Name = "frmRegistros";
-            Text = "Registro de Venta ";
+            Text = "CODEPLAY: REGISTRO DE VENTA";
+            Load += frmRegistros_Load;
             grpRegistroEst.ResumeLayout(false);
             grpRegistroEst.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvRegistros).EndInit();
             ResumeLayout(false);
         }
 
@@ -186,6 +210,8 @@
         private Label label4;
         private Button btnRegistrar;
         private Button btnSalir;
-        private DataGridView dataGridView1;
+        private DataGridView dgvRegistros;
+        private TextBox txtContrasenia;
+        private Label label5;
     }
 }
