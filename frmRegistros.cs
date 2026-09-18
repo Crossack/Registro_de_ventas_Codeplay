@@ -1,5 +1,4 @@
-﻿using Registro_de_ventas_Codeplay.Sql;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,49 +7,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
-using Registro_de_ventas_Codeplay.Classes;
+using Registro_de_ventas_Codeplay.Business;
+using Registro_de_ventas_Codeplay.Models;
 
 namespace Registro_de_ventas_Codeplay
 {
     public partial class frmRegistros : Form
     {
-        // Instancia de la conexion para gestionar la BD
-        private Conexion cadConexion = new Conexion();
+        private UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+        private DatosNegocios datosNegocios = new DatosNegocios();
 
         public frmRegistros()
         {
             InitializeComponent();
         }
 
-
         private void CargarPaises()
         {
-            string query = @"SELECT Idpais, NombrePais FROM Dispopais ORDER BY NombrePais ASC";
             try
             {
-                // Crea la conexion, la consulta y obtiene los datos de los paises
-                using (SqlConnection conexion = cadConexion.CrearConexion())
-                using (SqlCommand cmd = new SqlCommand(query, conexion))
-                using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
-                {
-                    conexion.Open();
-                    DataTable dataTable = new DataTable();
-                    adaptador.Fill(dataTable);
-
-                    cmbPais.DisplayMember = "NombrePais"; // Asigna los nombres de los paises
-                    cmbPais.ValueMember = "Idpais"; // Asigna los id segun la tabla Idpais
-                    cmbPais.DataSource = dataTable;
-                    cmbPais.SelectedIndex = -1;
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(
-                    "Error al cargar la lista de paises: " + ex.Message,
-                    "Error SQL",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                cmbPais.DisplayMember = "NombrePais"; // Asigna los nombres de los paises
+                cmbPais.ValueMember = "Idpais"; // Asigna los id segun la tabla Idpais
+                cmbPais.DataSource = datosNegocios.SolicitarListaPaises();
+                cmbPais.SelectedIndex = -1;   
             }
             catch (Exception ex)
             {
@@ -69,41 +48,40 @@ namespace Registro_de_ventas_Codeplay
                 return;
             }
 
-            int idPais = Convert.ToInt32(cmbPais.SelectedValue);
-
-            string sql = @"
-             INSERT INTO Usuario
-             VALUES
-             (@NombreUsuario, @FechaNac, @Hashcontrasena, @CorreoElectronico, @FechaRegistro, @idpais, 1)";
-
             try
             {
-                using (SqlConnection conexion = cadConexion.CrearConexion())
+                Usuario usuario = new Usuario
                 {
-                    using (SqlCommand cmd = new SqlCommand(sql, conexion))
-                    {
-                        cmd.Parameters.AddWithValue("@NombreUsuario", txtUsuario.Text);
-                        cmd.Parameters.AddWithValue("@FechaNac", dtpFechaNac.Value.Date);
-                        cmd.Parameters.AddWithValue("@Hashcontrasena", txtContrasenia.Text);
-                        cmd.Parameters.AddWithValue("@CorreoElectronico", txtCorreo.Text);
-                        cmd.Parameters.AddWithValue("@FechaRegistro", DateTime.Today);
-                        cmd.Parameters.AddWithValue("@Idpais", idPais);
+                    NombreUsuario = txtUsuario.Text.Trim(),
+                    Contraseña = txtContrasenia.Text.Trim(),
+                    FechaNacimiento = dtpFechaNac.Value.Date,
+                    CorreoElectronico = txtCorreo.Text.Trim(),
+                    IdPais = Convert.ToInt32(cmbPais.SelectedValue)
+                };
 
-                        conexion.Open();
-                        cmd.ExecuteNonQuery(); // Ejecuta la orden en SQL
-                        MessageBox.Show("Registro exitoso", "Guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LimpiarFormulario();
-                    }
-                }
+                usuarioNegocio.RegistrarUsuario(usuario);
+
+                MessageBox.Show("Registro exitososo",
+                    "Guardado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                LimpiarFormulario();
             }
-            catch (SqlException ex)
+            catch (ArgumentException ex)
             {
-                MessageBox.Show("Error al guardar el registro: " + ex.Message,
-                    "Error SQL",
+                MessageBox.Show(ex.Message,
+                    "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("A ocurrido un error: " + ex .Message,
+                    "Error general",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
             CargarDatos();
         }
 
@@ -166,19 +144,16 @@ namespace Registro_de_ventas_Codeplay
         // Carga y refresca la lista de la tabla usuarios
         private void CargarDatos()
         {
-            string sql = @" 
-                SELECT u.IdUsuario, u.NombreUsuario, u.FechaNac, u.CorreoElectronico, u.FechaRegistro, d.NombrePais, u.EstadoCuenta 
-                FROM Usuario u 
-                INNER JOIN Dispopais d ON u.Idpais = d.Idpais 
-                ORDER BY u.NombreUsuario;";
-
-            using (SqlConnection conexion = cadConexion.CrearConexion())
-            using (SqlDataAdapter adaptador = new SqlDataAdapter(sql, conexion))
+            try
             {
-                DataTable tabla = new DataTable();
-                adaptador.Fill(tabla);
-                dgvRegistros.DataSource = tabla;
-
+                dgvRegistros.DataSource = usuarioNegocio.SolicitarListaUsuarios();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("A occurrido un error: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
         }
 
