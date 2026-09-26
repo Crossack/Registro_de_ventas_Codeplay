@@ -1,14 +1,13 @@
-using Microsoft.Data.SqlClient;
-using Registro_de_ventas_Codeplay.Sql;
-using Registro_de_ventas_Codeplay.Classes;
 using System.Drawing;
+using Registro_de_ventas_Codeplay.Models;
+using Registro_de_ventas_Codeplay.Business;
 
 namespace Registro_de_ventas_Codeplay
 {
     public partial class FrmInicioSesion : Form
     {
         private bool verContraseña = false;
-        private Conexion db = new Conexion();
+        private readonly LoginNegocios loginNegocios = new LoginNegocios();
 
         public FrmInicioSesion()
         {
@@ -17,25 +16,7 @@ namespace Registro_de_ventas_Codeplay
 
         private void FrmInicioSesion_Load(object sender, EventArgs e)
         {
-            try
-            {
-                using (SqlConnection conexion = db.CrearConexion())
-                {
-                    conexion.Open();
-                    MessageBox.Show(
-                        "¡Conexión exitosa a SQL Server!",
-                        "Estado",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Error al conectar: " + ex.Message,
-                    "Error de SQL",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
+            
         }
 
         private void BtnVerContraseña_Click(object sender, EventArgs e)
@@ -46,44 +27,39 @@ namespace Registro_de_ventas_Codeplay
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            string query = @"SELECT u.IdUsuario, u.NombreUsuario, r.Nombre AS Rol 
-                 FROM LoginUsuarios u 
-                 INNER JOIN Roles r ON u.IdRol = r.IdRol 
-                 WHERE u.NombreUsuario = @usuario AND u.PasswordHash = @password";
-
-            using (SqlConnection conexion = db.CrearConexion())
-            using (SqlCommand cmd = new SqlCommand(query, conexion))
+            try
             {
-                cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text.Trim());
-                cmd.Parameters.AddWithValue("@password", txtContraseña.Text); // Idealmente con hash
-                conexion.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                bool acceso = loginNegocios.ValidarSesion(txtUsuario.Text.Trim(), txtContraseña.Text);
+
+                if (acceso)
                 {
-                    if (reader.Read())
-                    {
-                        SesionActiva.IdUsuario = reader.GetInt32(0);
-                        SesionActiva.NombreUsuario = reader.GetString(1);
-                        SesionActiva.RolUsuario = reader.GetString(2);
-
-                        MessageBox.Show(
-                            $"Bienvenido {SesionActiva.NombreUsuario} :)",
-                            "Inicio de sesion exitoso",
-                            MessageBoxButtons.OK);
-
-                        DialogResult = DialogResult.OK;
-                        Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show(
-                            "Credenciales inválidas.",
-                            "Error al iniciar sesion",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning);
-                        txtContraseña.Clear();
-                        txtContraseña.Focus();
-                    }
+                    MessageBox.Show(
+                       $"Bienvenido {SesionActiva.NombreUsuario} :)",
+                       "Inicio de sesion exitoso",
+                       MessageBoxButtons.OK);
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
+                else
+                {
+                    MessageBox.Show("Credenciales invalidas",
+                        "Error al iniciar sesion",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    txtContraseña.Clear();
+                    txtContraseña.Focus();
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al iniciar sesion: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 

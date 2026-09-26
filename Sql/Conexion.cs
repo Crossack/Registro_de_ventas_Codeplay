@@ -7,11 +7,11 @@ using Microsoft.Data.SqlClient;
 
 namespace Registro_de_ventas_Codeplay.Sql
 {
-    public class Conexion
+    public static class Conexion
     {
         private const string archivoConexion = "conexion.txt";
 
-        public string ObtenerConexion()
+        public static string ObtenerConexion()
         {
             string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, archivoConexion);
 
@@ -38,7 +38,7 @@ namespace Registro_de_ventas_Codeplay.Sql
             return File.ReadAllText(ruta).Trim();
         }
 
-        public SqlConnection CrearConexion()
+        public static SqlConnection CrearConexion()
         {
             return new SqlConnection(ObtenerConexion());
         }
