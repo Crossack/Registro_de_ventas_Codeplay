@@ -316,6 +316,7 @@
             // dtpFechaNac
             // 
             dtpFechaNac.FontSize = ReaLTaiizor.Extension.Poison.PoisonDateTimeSize.Medium;
+            dtpFechaNac.Format = DateTimePickerFormat.Short;
             dtpFechaNac.Location = new Point(34, 223);
             dtpFechaNac.MinimumSize = new Size(0, 30);
             dtpFechaNac.Name = "dtpFechaNac";
