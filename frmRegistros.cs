@@ -193,7 +193,7 @@ namespace Registro_de_ventas_Codeplay
             }
         }
 
-        // Inicializacion del formulario
+        // Inicializacion del formulario y carga los nuevos cambios
         private void frmRegistros_Load(object sender, EventArgs e)
         {
             CargarDatos();
@@ -220,7 +220,7 @@ namespace Registro_de_ventas_Codeplay
 
         }
 
-        private void AplicarCoolores() //Aplica los colores automaticamente
+        private void AplicarCoolores() //Aplica los colores automaticamente 
         {
             this.BackColor = ColorFondo;
             grpRegistroEst.BackColor = ColorBlanco;
@@ -307,19 +307,19 @@ namespace Registro_de_ventas_Codeplay
 
         }
 
-        private void ConfigurarTarjetaRegistro()
+        private void ConfigurarTarjetaRegistro() // Colores de la tarjeta de registro
         {
 
-            // 1. Fondo de la tarjeta y del formulario
+            
             this.BackColor = ColorTranslator.FromHtml("#F1F5F9");
             grpRegistroEst.BackColor = Color.White;
 
-            // 2. Definir fuente y colores
+            
             Font fontLabel = new Font("Segoe UI Semibold", 9f, FontStyle.Bold);
             Color colorTextoLabels = ColorTranslator.FromHtml("#475569"); // Gris pizarra elegante
             Color bordeInputs = ColorTranslator.FromHtml("#CBD5E1");
 
-            // 3. Configurar etiquetas PoisonLabel (Obligatorio UseCustom)
+            //  Configurar etiquetas PoisonLabel (Obligatorio UseCustom)
             PoisonLabel[] labels = { lblUsuario, lblcontrasena, fechanac, lblemail, lblpais };
             foreach (var lbl in labels)
             {
@@ -332,7 +332,7 @@ namespace Registro_de_ventas_Codeplay
                 }
             }
 
-            // 4. Campos de texto
+            // Campos de texto
             txtUsuario.BorderColor = bordeInputs;
             txtUsuario.CustomBGColor = Color.White;
 
@@ -343,11 +343,11 @@ namespace Registro_de_ventas_Codeplay
             txtCorreo.BorderColor = bordeInputs;
             txtCorreo.CustomBGColor = Color.White;
 
-            // 5. Selector de fecha
+            // Selector de fecha
             dtpFechaNac.Theme = ReaLTaiizor.Enum.Poison.ThemeStyle.Light;
             dtpFechaNac.Style = ReaLTaiizor.Enum.Poison.ColorStyle.Blue;
 
-            // 6. Texto de usuario inferior
+            // Texto de usuario inferior
             lblBienvenida.Font = new Font("Segoe UI", 9f, FontStyle.Regular);
             lblBienvenida.ForeColor = ColorTranslator.FromHtml("#64748B");
         }

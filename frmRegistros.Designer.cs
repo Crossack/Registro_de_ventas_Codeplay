@@ -458,7 +458,7 @@
             Controls.Add(dgvRegistros);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmRegistros";
-            Text = "INICIO DE SESION";
+            Text = "! BIENVENIDO !";
             Load += frmRegistros_Load;
             ((System.ComponentModel.ISupportInitialize)dgvRegistros).EndInit();
             grpRegistroEst.ResumeLayout(false);
