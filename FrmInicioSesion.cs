@@ -16,13 +16,17 @@ namespace Registro_de_ventas_Codeplay
 
         private void FrmInicioSesion_Load(object sender, EventArgs e)
         {
-            
+            txtContraseña.UseSystemPasswordChar = true;
+            verContraseña = false;
         }
 
         private void BtnVerContraseña_Click(object sender, EventArgs e)
         {
-            txtContraseña.UseSystemPasswordChar = verContraseña;
+            //txtContraseña.UseSystemPasswordChar = verContraseña;
+            //verContraseña = !verContraseña;
+
             verContraseña = !verContraseña;
+            txtContraseña.UseSystemPasswordChar = !verContraseña;
         }
 
         private void BtnLogin_Click(object sender, EventArgs e)
@@ -46,7 +50,7 @@ namespace Registro_de_ventas_Codeplay
                         "Error al iniciar sesion",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    txtContraseña.Clear();
+                    txtContraseña.Text = "";
                     txtContraseña.Focus();
                 }
             }
@@ -65,7 +69,7 @@ namespace Registro_de_ventas_Codeplay
 
         private void BtnSalir_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
 
         private void LnkContraseña_Click(object sender, EventArgs e)

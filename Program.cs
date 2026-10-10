@@ -10,8 +10,10 @@ namespace Registro_de_ventas_Codeplay
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
 
-            ApplicationConfiguration.Initialize();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
             using (FrmInicioSesion Login = new FrmInicioSesion())
             {

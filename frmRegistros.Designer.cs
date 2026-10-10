@@ -259,6 +259,7 @@
             // lblpais
             // 
             lblpais.AutoSize = true;
+            lblpais.Font = new Font("Segoe UI Light", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblpais.Location = new Point(34, 355);
             lblpais.Name = "lblpais";
             lblpais.Size = new Size(34, 20);
@@ -268,6 +269,7 @@
             // lblemail
             // 
             lblemail.AutoSize = true;
+            lblemail.Font = new Font("Segoe UI Light", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblemail.Location = new Point(34, 280);
             lblemail.Name = "lblemail";
             lblemail.Size = new Size(48, 20);
@@ -277,6 +279,7 @@
             // fechanac
             // 
             fechanac.AutoSize = true;
+            fechanac.Font = new Font("Segoe UI Light", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             fechanac.Location = new Point(34, 190);
             fechanac.Name = "fechanac";
             fechanac.Size = new Size(162, 20);
@@ -286,6 +289,7 @@
             // lblcontrasena
             // 
             lblcontrasena.AutoSize = true;
+            lblcontrasena.Font = new Font("Segoe UI Light", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblcontrasena.Location = new Point(34, 105);
             lblcontrasena.Name = "lblcontrasena";
             lblcontrasena.Size = new Size(100, 20);
@@ -307,6 +311,7 @@
             // lblUsuario
             // 
             lblUsuario.AutoSize = true;
+            lblUsuario.Font = new Font("Segoe UI Light", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblUsuario.Location = new Point(34, 30);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(67, 20);
@@ -411,11 +416,11 @@
             // 
             lblTitulo.AutoSize = true;
             lblTitulo.BackColor = Color.Transparent;
-            lblTitulo.Font = new Font("Segoe UI", 11F);
+            lblTitulo.Font = new Font("Consolas", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitulo.ForeColor = Color.FromArgb(76, 76, 77);
-            lblTitulo.Location = new Point(386, 17);
+            lblTitulo.Location = new Point(482, 17);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(323, 25);
+            lblTitulo.Size = new Size(320, 22);
             lblTitulo.TabIndex = 12;
             lblTitulo.Text = "REGISTRO DE USUARIOS | CODEPLAY";
             // 
