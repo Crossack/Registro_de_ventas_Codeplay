@@ -36,11 +36,11 @@
             btnSalir = new ReaLTaiizor.Controls.MaterialButton();
             btnRegistrar = new ReaLTaiizor.Controls.MaterialButton();
             grpRegistroEst = new ReaLTaiizor.Controls.MaterialCard();
-            PicPais = new ReaLTaiizor.Controls.HopePictureBox();
-            PicEmail = new ReaLTaiizor.Controls.HopePictureBox();
-            PicFecha = new ReaLTaiizor.Controls.HopePictureBox();
-            PicContrasena = new ReaLTaiizor.Controls.HopePictureBox();
-            PicUsuario = new ReaLTaiizor.Controls.HopePictureBox();
+            Iconusuario = new FontAwesome.Sharp.IconPictureBox();
+            iconpais = new FontAwesome.Sharp.IconPictureBox();
+            iconemail = new FontAwesome.Sharp.IconPictureBox();
+            iconfecha = new FontAwesome.Sharp.IconPictureBox();
+            iconcontrasena = new FontAwesome.Sharp.IconPictureBox();
             lblpais = new ReaLTaiizor.Controls.PoisonLabel();
             lblemail = new ReaLTaiizor.Controls.PoisonLabel();
             fechanac = new ReaLTaiizor.Controls.PoisonLabel();
@@ -56,13 +56,15 @@
             lblTitulo = new ReaLTaiizor.Controls.DungeonLabel();
             lblBienvenida = new ReaLTaiizor.Controls.DungeonLabel();
             PicManager = new FontAwesome.Sharp.IconPictureBox();
+            btnEditar = new ReaLTaiizor.Controls.MaterialButton();
+            btnEliminar = new ReaLTaiizor.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)dgvRegistros).BeginInit();
             grpRegistroEst.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)PicPais).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PicEmail).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PicFecha).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PicContrasena).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PicUsuario).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Iconusuario).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)iconpais).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)iconemail).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)iconfecha).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)iconcontrasena).BeginInit();
             materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)hopePictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PicManager).BeginInit();
@@ -111,7 +113,7 @@
             dgvRegistros.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgvRegistros.ScrollBars = ScrollBars.None;
             dgvRegistros.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvRegistros.Size = new Size(787, 390);
+            dgvRegistros.Size = new Size(787, 313);
             dgvRegistros.TabIndex = 10;
             // 
             // btnSalir
@@ -159,11 +161,11 @@
             // grpRegistroEst
             // 
             grpRegistroEst.BackColor = Color.FromArgb(255, 255, 255);
-            grpRegistroEst.Controls.Add(PicPais);
-            grpRegistroEst.Controls.Add(PicEmail);
-            grpRegistroEst.Controls.Add(PicFecha);
-            grpRegistroEst.Controls.Add(PicContrasena);
-            grpRegistroEst.Controls.Add(PicUsuario);
+            grpRegistroEst.Controls.Add(Iconusuario);
+            grpRegistroEst.Controls.Add(iconpais);
+            grpRegistroEst.Controls.Add(iconemail);
+            grpRegistroEst.Controls.Add(iconfecha);
+            grpRegistroEst.Controls.Add(iconcontrasena);
             grpRegistroEst.Controls.Add(lblpais);
             grpRegistroEst.Controls.Add(lblemail);
             grpRegistroEst.Controls.Add(btnSalir);
@@ -186,81 +188,81 @@
             grpRegistroEst.Size = new Size(376, 516);
             grpRegistroEst.TabIndex = 9;
             // 
-            // PicPais
+            // Iconusuario
             // 
-            PicPais.BackColor = Color.FromArgb(192, 196, 204);
-            PicPais.Image = Properties.Resources.country_direction_location_map_navigation_pin_svgrepo_com;
-            PicPais.Location = new Point(266, 372);
-            PicPais.Name = "PicPais";
-            PicPais.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            PicPais.Size = new Size(90, 42);
-            PicPais.SizeMode = PictureBoxSizeMode.Zoom;
-            PicPais.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            PicPais.TabIndex = 19;
-            PicPais.TabStop = false;
-            PicPais.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            Iconusuario.BackColor = Color.FromArgb(255, 255, 255);
+            Iconusuario.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            Iconusuario.IconChar = FontAwesome.Sharp.IconChar.UserTag;
+            Iconusuario.IconColor = Color.FromArgb(222, 0, 0, 0);
+            Iconusuario.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            Iconusuario.IconSize = 50;
+            Iconusuario.Location = new Point(18, 36);
+            Iconusuario.Name = "Iconusuario";
+            Iconusuario.Size = new Size(50, 50);
+            Iconusuario.TabIndex = 23;
+            Iconusuario.TabStop = false;
             // 
-            // PicEmail
+            // iconpais
             // 
-            PicEmail.BackColor = Color.FromArgb(192, 196, 204);
-            PicEmail.Image = Properties.Resources.email_message_svgrepo_com;
-            PicEmail.Location = new Point(266, 283);
-            PicEmail.Name = "PicEmail";
-            PicEmail.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            PicEmail.Size = new Size(90, 56);
-            PicEmail.SizeMode = PictureBoxSizeMode.Zoom;
-            PicEmail.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            PicEmail.TabIndex = 18;
-            PicEmail.TabStop = false;
-            PicEmail.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            iconpais.BackColor = Color.FromArgb(255, 255, 255);
+            iconpais.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            iconpais.IconChar = FontAwesome.Sharp.IconChar.Map;
+            iconpais.IconColor = Color.FromArgb(222, 0, 0, 0);
+            iconpais.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconpais.IconSize = 50;
+            iconpais.Location = new Point(18, 364);
+            iconpais.Name = "iconpais";
+            iconpais.Size = new Size(50, 50);
+            iconpais.TabIndex = 22;
+            iconpais.TabStop = false;
             // 
-            // PicFecha
+            // iconemail
             // 
-            PicFecha.BackColor = Color.FromArgb(192, 196, 204);
-            PicFecha.Image = Properties.Resources.calendar_svgrepo_com;
-            PicFecha.Location = new Point(266, 213);
-            PicFecha.Name = "PicFecha";
-            PicFecha.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            PicFecha.Size = new Size(90, 42);
-            PicFecha.SizeMode = PictureBoxSizeMode.Zoom;
-            PicFecha.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            PicFecha.TabIndex = 17;
-            PicFecha.TabStop = false;
-            PicFecha.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            iconemail.BackColor = Color.FromArgb(255, 255, 255);
+            iconemail.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            iconemail.IconChar = FontAwesome.Sharp.IconChar.FileContract;
+            iconemail.IconColor = Color.FromArgb(222, 0, 0, 0);
+            iconemail.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconemail.IconSize = 50;
+            iconemail.Location = new Point(18, 286);
+            iconemail.Name = "iconemail";
+            iconemail.Size = new Size(50, 50);
+            iconemail.TabIndex = 17;
+            iconemail.TabStop = false;
             // 
-            // PicContrasena
+            // iconfecha
             // 
-            PicContrasena.BackColor = Color.FromArgb(192, 196, 204);
-            PicContrasena.Image = Properties.Resources.password_management_svgrepo_com;
-            PicContrasena.Location = new Point(266, 116);
-            PicContrasena.Name = "PicContrasena";
-            PicContrasena.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            PicContrasena.Size = new Size(90, 54);
-            PicContrasena.SizeMode = PictureBoxSizeMode.Zoom;
-            PicContrasena.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            PicContrasena.TabIndex = 16;
-            PicContrasena.TabStop = false;
-            PicContrasena.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            iconfecha.BackColor = Color.FromArgb(255, 255, 255);
+            iconfecha.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            iconfecha.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
+            iconfecha.IconColor = Color.FromArgb(222, 0, 0, 0);
+            iconfecha.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconfecha.IconSize = 50;
+            iconfecha.Location = new Point(18, 203);
+            iconfecha.Name = "iconfecha";
+            iconfecha.Size = new Size(50, 50);
+            iconfecha.TabIndex = 21;
+            iconfecha.TabStop = false;
             // 
-            // PicUsuario
+            // iconcontrasena
             // 
-            PicUsuario.BackColor = Color.FromArgb(192, 196, 204);
-            PicUsuario.Image = Properties.Resources.user_circle_svgrepo_com__1_;
-            PicUsuario.Location = new Point(266, 44);
-            PicUsuario.Name = "PicUsuario";
-            PicUsuario.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-            PicUsuario.Size = new Size(90, 42);
-            PicUsuario.SizeMode = PictureBoxSizeMode.Zoom;
-            PicUsuario.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            PicUsuario.TabIndex = 15;
-            PicUsuario.TabStop = false;
-            PicUsuario.TextRenderingType = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            iconcontrasena.BackColor = Color.FromArgb(255, 255, 255);
+            iconcontrasena.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            iconcontrasena.IconChar = FontAwesome.Sharp.IconChar.Lock;
+            iconcontrasena.IconColor = Color.FromArgb(222, 0, 0, 0);
+            iconcontrasena.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconcontrasena.IconSize = 50;
+            iconcontrasena.Location = new Point(18, 120);
+            iconcontrasena.Name = "iconcontrasena";
+            iconcontrasena.Size = new Size(50, 50);
+            iconcontrasena.TabIndex = 20;
+            iconcontrasena.TabStop = false;
             // 
             // lblpais
             // 
             lblpais.AutoSize = true;
             lblpais.Font = new Font("Segoe UI Light", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblpais.Location = new Point(34, 355);
+            lblpais.Location = new Point(92, 355);
             lblpais.Name = "lblpais";
             lblpais.Size = new Size(34, 20);
             lblpais.TabIndex = 11;
@@ -270,7 +272,7 @@
             // 
             lblemail.AutoSize = true;
             lblemail.Font = new Font("Segoe UI Light", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblemail.Location = new Point(34, 280);
+            lblemail.Location = new Point(85, 280);
             lblemail.Name = "lblemail";
             lblemail.Size = new Size(48, 20);
             lblemail.TabIndex = 10;
@@ -280,7 +282,7 @@
             // 
             fechanac.AutoSize = true;
             fechanac.Font = new Font("Segoe UI Light", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            fechanac.Location = new Point(34, 190);
+            fechanac.Location = new Point(88, 190);
             fechanac.Name = "fechanac";
             fechanac.Size = new Size(162, 20);
             fechanac.TabIndex = 9;
@@ -290,7 +292,7 @@
             // 
             lblcontrasena.AutoSize = true;
             lblcontrasena.Font = new Font("Segoe UI Light", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblcontrasena.Location = new Point(34, 105);
+            lblcontrasena.Location = new Point(85, 105);
             lblcontrasena.Name = "lblcontrasena";
             lblcontrasena.Size = new Size(100, 20);
             lblcontrasena.TabIndex = 8;
@@ -303,7 +305,7 @@
             cmbPais.Font = new Font("Segoe UI", 12F);
             cmbPais.FormattingEnabled = true;
             cmbPais.ItemHeight = 30;
-            cmbPais.Location = new Point(34, 378);
+            cmbPais.Location = new Point(88, 378);
             cmbPais.Name = "cmbPais";
             cmbPais.Size = new Size(226, 36);
             cmbPais.TabIndex = 7;
@@ -312,7 +314,7 @@
             // 
             lblUsuario.AutoSize = true;
             lblUsuario.Font = new Font("Segoe UI Light", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblUsuario.Location = new Point(34, 30);
+            lblUsuario.Location = new Point(85, 30);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(67, 20);
             lblUsuario.TabIndex = 6;
@@ -321,7 +323,7 @@
             // dtpFechaNac
             // 
             dtpFechaNac.FontSize = ReaLTaiizor.Extension.Poison.PoisonDateTimeSize.Medium;
-            dtpFechaNac.Location = new Point(34, 223);
+            dtpFechaNac.Location = new Point(88, 223);
             dtpFechaNac.MinimumSize = new Size(0, 30);
             dtpFechaNac.Name = "dtpFechaNac";
             dtpFechaNac.Size = new Size(226, 30);
@@ -334,7 +336,7 @@
             txtCorreo.CustomBGColor = Color.White;
             txtCorreo.Font = new Font("Tahoma", 11F);
             txtCorreo.ForeColor = Color.DimGray;
-            txtCorreo.Location = new Point(34, 303);
+            txtCorreo.Location = new Point(88, 303);
             txtCorreo.MaxLength = 32767;
             txtCorreo.Multiline = false;
             txtCorreo.Name = "txtCorreo";
@@ -352,7 +354,7 @@
             txtContrasenia.CustomBGColor = Color.White;
             txtContrasenia.Font = new Font("Tahoma", 11F);
             txtContrasenia.ForeColor = Color.DimGray;
-            txtContrasenia.Location = new Point(34, 137);
+            txtContrasenia.Location = new Point(88, 137);
             txtContrasenia.MaxLength = 32767;
             txtContrasenia.Multiline = false;
             txtContrasenia.Name = "txtContrasenia";
@@ -370,7 +372,7 @@
             txtUsuario.CustomBGColor = Color.White;
             txtUsuario.Font = new Font("Tahoma", 11F);
             txtUsuario.ForeColor = Color.DimGray;
-            txtUsuario.Location = new Point(34, 53);
+            txtUsuario.Location = new Point(88, 53);
             txtUsuario.MaxLength = 32767;
             txtUsuario.Multiline = false;
             txtUsuario.Name = "txtUsuario";
@@ -450,12 +452,54 @@
             PicManager.TabIndex = 14;
             PicManager.TabStop = false;
             // 
+            // btnEditar
+            // 
+            btnEditar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnEditar.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnEditar.Depth = 0;
+            btnEditar.HighEmphasis = true;
+            btnEditar.Icon = null;
+            btnEditar.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            btnEditar.Location = new Point(584, 389);
+            btnEditar.Margin = new Padding(4, 6, 4, 6);
+            btnEditar.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            btnEditar.Name = "btnEditar";
+            btnEditar.NoAccentTextColor = Color.Empty;
+            btnEditar.Size = new Size(85, 45);
+            btnEditar.TabIndex = 15;
+            btnEditar.Text = "EDITAR";
+            btnEditar.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnEditar.UseAccentColor = false;
+            btnEditar.UseVisualStyleBackColor = true;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnEliminar.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnEliminar.Depth = 0;
+            btnEliminar.HighEmphasis = true;
+            btnEliminar.Icon = null;
+            btnEliminar.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
+            btnEliminar.Location = new Point(763, 389);
+            btnEliminar.Margin = new Padding(4, 6, 4, 6);
+            btnEliminar.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.NoAccentTextColor = Color.Empty;
+            btnEliminar.Size = new Size(106, 45);
+            btnEliminar.TabIndex = 16;
+            btnEliminar.Text = "ELIMINAR";
+            btnEliminar.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnEliminar.UseAccentColor = false;
+            btnEliminar.UseVisualStyleBackColor = true;
+            // 
             // frmRegistros
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 247, 250);
             ClientSize = new Size(1163, 588);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnEditar);
             Controls.Add(PicManager);
             Controls.Add(lblBienvenida);
             Controls.Add(materialCard1);
@@ -468,11 +512,11 @@
             ((System.ComponentModel.ISupportInitialize)dgvRegistros).EndInit();
             grpRegistroEst.ResumeLayout(false);
             grpRegistroEst.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)PicPais).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PicEmail).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PicFecha).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PicContrasena).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PicUsuario).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Iconusuario).EndInit();
+            ((System.ComponentModel.ISupportInitialize)iconpais).EndInit();
+            ((System.ComponentModel.ISupportInitialize)iconemail).EndInit();
+            ((System.ComponentModel.ISupportInitialize)iconfecha).EndInit();
+            ((System.ComponentModel.ISupportInitialize)iconcontrasena).EndInit();
             materialCard1.ResumeLayout(false);
             materialCard1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)hopePictureBox1).EndInit();
@@ -499,12 +543,14 @@
         private ReaLTaiizor.Controls.MaterialCard materialCard1;
         private ReaLTaiizor.Controls.DungeonLabel lblTitulo;
         private ReaLTaiizor.Controls.DungeonLabel lblBienvenida;
-        private ReaLTaiizor.Controls.HopePictureBox PicUsuario;
-        private ReaLTaiizor.Controls.HopePictureBox PicFecha;
-        private ReaLTaiizor.Controls.HopePictureBox PicContrasena;
-        private ReaLTaiizor.Controls.HopePictureBox PicPais;
-        private ReaLTaiizor.Controls.HopePictureBox PicEmail;
         private FontAwesome.Sharp.IconPictureBox PicManager;
         private ReaLTaiizor.Controls.HopePictureBox hopePictureBox1;
+        private ReaLTaiizor.Controls.MaterialButton btnEditar;
+        private ReaLTaiizor.Controls.MaterialButton btnEliminar;
+        private FontAwesome.Sharp.IconPictureBox iconemail;
+        private FontAwesome.Sharp.IconPictureBox Iconusuario;
+        private FontAwesome.Sharp.IconPictureBox iconpais;
+        private FontAwesome.Sharp.IconPictureBox iconfecha;
+        private FontAwesome.Sharp.IconPictureBox iconcontrasena;
     }
 }
