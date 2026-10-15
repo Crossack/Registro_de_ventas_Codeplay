@@ -54,6 +54,7 @@ namespace Registro_de_ventas_Codeplay.Sql
                 d.NombrePais, u.EstadoCuenta 
                 FROM Usuario u 
                 INNER JOIN Dispopais d ON u.Idpais = d.Idpais 
+                WHERE EstadoCuenta = 1 
                 ORDER BY u.NombreUsuario;";
 
             using (SqlConnection conexion = Conexion.CrearConexion())
@@ -95,7 +96,7 @@ namespace Registro_de_ventas_Codeplay.Sql
                 cmd.Parameters.AddWithValue("@Idusuario", usuario.IdUsuario);
                 cmd.Parameters.AddWithValue("@NombreUsuario", usuario.NombreUsuario);
                 cmd.Parameters.AddWithValue("@FechaNac", usuario.FechaNacimiento);
-                cmd.Parameters.AddWithValue("@Hashcontrasena", usuario.Contraseña);
+                cmd.Parameters.AddWithValue("@Hashcontraseña", usuario.Contraseña);
                 cmd.Parameters.AddWithValue("@CorreoElectronico", usuario.CorreoElectronico);
                 cmd.Parameters.AddWithValue("@FechaRegistro", DateTime.Today);
                 cmd.Parameters.AddWithValue("@Idpais", usuario.IdPais);

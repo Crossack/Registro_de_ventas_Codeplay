@@ -22,7 +22,7 @@ namespace Registro_de_ventas_Codeplay.Business
             string hash = Hasher.GenerarHashSHA256(contraseña);
 
             // Validar existencia en la capa de datos
-            Usuario? usuarioValido = loginDatos.IniciarSesion(usuario, hash);
+            LoginUsuario? usuarioValido = loginDatos.IniciarSesion(usuario, hash);
 
             if (usuarioValido == null)
             {

@@ -18,6 +18,8 @@ namespace Registro_de_ventas_Codeplay
         private UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
         private DatosNegocios datosNegocios = new DatosNegocios();
 
+        private Usuario? usuarioSeleccionado;
+
         //Datos para los colores de la ventana principal
 
         private readonly Color ColorFondo = ColorTranslator.FromHtml("#f1f2fc");
@@ -25,7 +27,7 @@ namespace Registro_de_ventas_Codeplay
         private readonly Color ColorSecundario = ColorTranslator.FromHtml("#e79d94");
         private readonly Color ColorTexto = ColorTranslator.FromHtml("#07091f");
         private readonly Color ColorBlanco = Color.White;
-            
+
         public frmRegistros()
         {
             InitializeComponent();
@@ -38,7 +40,7 @@ namespace Registro_de_ventas_Codeplay
                 cmbPais.DisplayMember = "NombrePais"; // Asigna los nombres de los paises
                 cmbPais.ValueMember = "Idpais"; // Asigna los id segun la tabla Idpais
                 cmbPais.DataSource = datosNegocios.SolicitarListaPaises();
-                cmbPais.SelectedIndex = -1;   
+                cmbPais.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -61,16 +63,25 @@ namespace Registro_de_ventas_Codeplay
             {
                 Usuario usuario = new Usuario
                 {
+                    IdUsuario = usuarioSeleccionado == null ? 0 : usuarioSeleccionado.IdUsuario,
                     NombreUsuario = txtUsuario.Text.Trim(),
                     Contraseña = txtContrasenia.Text.Trim(),
                     FechaNacimiento = dtpFechaNac.Value.Date,
+                    FechaRegistro = usuarioSeleccionado?.FechaRegistro,
                     CorreoElectronico = txtCorreo.Text.Trim(),
                     IdPais = Convert.ToInt32(cmbPais.SelectedValue)
                 };
 
-                usuarioNegocio.RegistrarUsuario(usuario);
+                if (usuarioSeleccionado is null)
+                {
+                    usuarioNegocio.RegistrarUsuario(usuario);
+                }
+                else
+                {
+                    usuarioNegocio.ModificarUsuario(usuario);
+                }
 
-                MessageBox.Show("Registro exitososo",
+                MessageBox.Show("El usuario se guardo exitosamente",
                     "Guardado",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -86,7 +97,7 @@ namespace Registro_de_ventas_Codeplay
             }
             catch (Exception ex)
             {
-                MessageBox.Show("A ocurrido un error: " + ex .Message,
+                MessageBox.Show("A ocurrido un error: " + ex.Message,
                     "Error general",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -143,13 +154,13 @@ namespace Registro_de_ventas_Codeplay
 
         private void LimpiarFormulario()
         {
-        
+            usuarioSeleccionado = null;
             txtCorreo.Text = string.Empty;
             txtUsuario.Text = string.Empty;
             txtContrasenia.Text = string.Empty;
             cmbPais.SelectedIndex = -1;
             txtUsuario.Focus();
-        
+            btnRegistrar.Text = "&Registrar";
         }
 
         // Carga y refresca la lista de la tabla usuarios
@@ -174,6 +185,9 @@ namespace Registro_de_ventas_Codeplay
             CargarDatos();
             CargarPaises();
 
+            dgvRegistros.Columns["Contraseña"].Visible = false;
+            dgvRegistros.Columns["IdPais"].Visible = false;
+
             lblBienvenida.Text = $"{SesionActiva.NombreUsuario} ({SesionActiva.RolUsuario})";
             if (SesionActiva.RolUsuario == "Lector")
             {
@@ -186,7 +200,7 @@ namespace Registro_de_ventas_Codeplay
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            DialogResult confirmar = MessageBox.Show("Desea cerrar el programa?","Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult confirmar = MessageBox.Show("Desea cerrar el programa?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmar == DialogResult.Yes)
             {
@@ -245,7 +259,7 @@ namespace Registro_de_ventas_Codeplay
 
 
             /////////////////////// Fuentes
-            
+
             Font fontTitulo = new Font("Segoe UI", 15f, FontStyle.Bold);
             Font fontLabels = new Font("Segoe UI Semibold", 8.5f, FontStyle.Bold);
             Font fontInputs = new Font("Segoe UI", 9.5f, FontStyle.Regular);
@@ -277,19 +291,16 @@ namespace Registro_de_ventas_Codeplay
 
             dgvRegistros.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9.5f, FontStyle.Bold);
             dgvRegistros.DefaultCellStyle.Font = fontInputs;
-
-        
-
         }
 
         private void ConfigurarTarjetaRegistro() // Colores de la tarjeta de registro
         {
 
-            
+
             this.BackColor = ColorTranslator.FromHtml("#F1F5F9");
             grpRegistroEst.BackColor = Color.White;
 
-            
+
             Font fontLabel = new Font("Segoe UI Semibold", 9f, FontStyle.Bold);
             Color colorTextoLabels = ColorTranslator.FromHtml("#475569"); // Gris pizarra elegante
             Color bordeInputs = ColorTranslator.FromHtml("#CBD5E1");
@@ -327,5 +338,57 @@ namespace Registro_de_ventas_Codeplay
             lblBienvenida.ForeColor = ColorTranslator.FromHtml("#64748B");
         }
 
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dgvRegistros.CurrentRow?.DataBoundItem is not Usuario usuario)
+            {
+                MessageBox.Show(
+                    "Por favor primero seleccione un usuario!",
+                    "Comprobacion",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            usuarioSeleccionado = usuario;
+            txtUsuario.Text = usuarioSeleccionado.NombreUsuario;
+            dtpFechaNac.Value = usuarioSeleccionado.FechaNacimiento;
+            txtCorreo.Text = usuarioSeleccionado.CorreoElectronico;
+            cmbPais.SelectedValue = usuarioSeleccionado.IdPais;
+
+            btnRegistrar.Text = "&Actualizar";
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvRegistros.CurrentRow?.DataBoundItem is not Usuario usuario)
+            {
+                MessageBox.Show(
+                    "Por favor primero seleccione un usuario!",
+                    "Comprobacion",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DialogResult confirmarEliminarUsuario = MessageBox.Show(
+                $"Estas seguro que quieres eliminar el usuario {usuario.NombreUsuario}?",
+                "Confirmar eliminacion",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirmarEliminarUsuario == DialogResult.Yes)
+            {
+                usuarioNegocio.EliminarUsuario(usuario.IdUsuario);
+                MessageBox.Show(
+                    $"Usuario {usuario.NombreUsuario} eliminado!",
+                    "Usuario eliminado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                LimpiarFormulario();
+                CargarDatos();
+            }
+        }
     }
 }

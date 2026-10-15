@@ -8,15 +8,15 @@ namespace Registro_de_ventas_Codeplay.Models
 {
     public static class SesionActiva
     {
-        public static int IdUsuario { get; set; }
-        public static string NombreUsuario { get; set; } = string.Empty;
-        public static string RolUsuario { get; set; } = string.Empty;
+        public static int? IdUsuario { get; set; }
+        public static string? NombreUsuario { get; set; } = string.Empty;
+        public static string? RolUsuario { get; set; } = string.Empty;
 
 
-        public static void Iniciar(Usuario usuario)
+        public static void Iniciar(LoginUsuario usuario)
         {
-            IdUsuario = usuario.IdUsuario;
-            NombreUsuario = usuario.NombreUsuario;
+            IdUsuario = usuario.Id;
+            NombreUsuario = usuario.Nombre;
             RolUsuario = usuario.Rol;
         }
 

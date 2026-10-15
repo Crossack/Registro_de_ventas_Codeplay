@@ -10,7 +10,7 @@ namespace Registro_de_ventas_Codeplay.Sql
 {
     public class LoginDatos
     {
-        public Usuario? IniciarSesion(string usuario, string contraseña)
+        public LoginUsuario? IniciarSesion(string usuario, string contraseña)
         {
             string query = @"SELECT u.IdUsuario, u.NombreUsuario, r.Nombre AS Rol 
                  FROM LoginUsuarios u 
@@ -27,10 +27,10 @@ namespace Registro_de_ventas_Codeplay.Sql
                 {
                     if (reader.Read())
                     {
-                        return new Usuario
+                        return new LoginUsuario
                         {
-                            IdUsuario = reader.GetInt32(0),
-                            NombreUsuario = reader.GetString(1),
+                            Id = reader.GetInt32(0),
+                            Nombre = reader.GetString(1),
                             Rol = reader.GetString(2)
                         };
                     }
