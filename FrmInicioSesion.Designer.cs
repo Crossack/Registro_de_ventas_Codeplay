@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInicioSesion));
             lnkContraseña = new LinkLabel();
             gbxLogin = new ReaLTaiizor.Controls.MaterialCard();
+            lblTituloLogin = new ReaLTaiizor.Controls.PoisonLabel();
             lblContraseña = new ReaLTaiizor.Controls.PoisonLabel();
             lblNombUsuario = new ReaLTaiizor.Controls.PoisonLabel();
             btnSalir = new ReaLTaiizor.Controls.MaterialButton();
@@ -46,7 +47,7 @@
             // 
             lnkContraseña.AutoSize = true;
             lnkContraseña.Font = new Font("Consolas", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lnkContraseña.Location = new Point(2, 400);
+            lnkContraseña.Location = new Point(103, 393);
             lnkContraseña.Name = "lnkContraseña";
             lnkContraseña.Size = new Size(184, 18);
             lnkContraseña.TabIndex = 3;
@@ -57,6 +58,7 @@
             // gbxLogin
             // 
             gbxLogin.BackColor = Color.FromArgb(255, 255, 255);
+            gbxLogin.Controls.Add(lblTituloLogin);
             gbxLogin.Controls.Add(lblContraseña);
             gbxLogin.Controls.Add(lnkContraseña);
             gbxLogin.Controls.Add(lblNombUsuario);
@@ -66,22 +68,35 @@
             gbxLogin.Controls.Add(txtContraseña);
             gbxLogin.Controls.Add(txtUsuario);
             gbxLogin.Depth = 0;
-            gbxLogin.Font = new Font("Consolas", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gbxLogin.Font = new Font("Consolas", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbxLogin.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            gbxLogin.Location = new Point(2, -2);
+            gbxLogin.Location = new Point(3, -2);
             gbxLogin.Margin = new Padding(17, 14, 17, 14);
             gbxLogin.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             gbxLogin.Name = "gbxLogin";
             gbxLogin.Padding = new Padding(17, 14, 17, 14);
             gbxLogin.Size = new Size(405, 425);
             gbxLogin.TabIndex = 4;
+            gbxLogin.Click += FrmInicioSesion_Load;
+            // 
+            // lblTituloLogin
+            // 
+            lblTituloLogin.Font = new Font("Consolas", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloLogin.Location = new Point(157, 30);
+            lblTituloLogin.Name = "lblTituloLogin";
+            lblTituloLogin.Size = new Size(148, 23);
+            lblTituloLogin.TabIndex = 8;
+            lblTituloLogin.Text = "CODEPLAY";
+            lblTituloLogin.UseCustomFont = true;
+            lblTituloLogin.UseCustomForeColor = true;
             // 
             // lblContraseña
             // 
             lblContraseña.AutoSize = true;
-            lblContraseña.Location = new Point(167, 134);
+            lblContraseña.Font = new Font("Consolas", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblContraseña.Location = new Point(49, 174);
             lblContraseña.Name = "lblContraseña";
-            lblContraseña.Size = new Size(88, 18);
+            lblContraseña.Size = new Size(99, 20);
             lblContraseña.TabIndex = 6;
             lblContraseña.Text = "CONTRASEÑA";
             lblContraseña.UseCustomFont = true;
@@ -89,29 +104,31 @@
             // 
             // lblNombUsuario
             // 
-            lblNombUsuario.AutoSize = true;
-            lblNombUsuario.Location = new Point(176, 60);
+            lblNombUsuario.Font = new Font("Consolas", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNombUsuario.Location = new Point(49, 95);
             lblNombUsuario.Name = "lblNombUsuario";
-            lblNombUsuario.Size = new Size(64, 18);
+            lblNombUsuario.Size = new Size(124, 20);
             lblNombUsuario.TabIndex = 5;
             lblNombUsuario.Text = "USUARIO";
+            lblNombUsuario.UseCustomBackColor = true;
             lblNombUsuario.UseCustomFont = true;
             lblNombUsuario.UseCustomForeColor = true;
             // 
             // btnSalir
             // 
+            btnSalir.AutoSize = false;
             btnSalir.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnSalir.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnSalir.Depth = 0;
             btnSalir.HighEmphasis = true;
             btnSalir.Icon = null;
             btnSalir.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            btnSalir.Location = new Point(163, 275);
+            btnSalir.Location = new Point(49, 308);
             btnSalir.Margin = new Padding(4, 5, 4, 5);
             btnSalir.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             btnSalir.Name = "btnSalir";
             btnSalir.NoAccentTextColor = Color.Empty;
-            btnSalir.Size = new Size(80, 45);
+            btnSalir.Size = new Size(299, 45);
             btnSalir.TabIndex = 4;
             btnSalir.Text = "SALIR";
             btnSalir.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Outlined;
@@ -121,23 +138,25 @@
             // 
             // btnLogin
             // 
+            btnLogin.AutoSize = false;
             btnLogin.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnLogin.BackColor = Color.FromArgb(0, 240, 255, 0);
             btnLogin.Density = ReaLTaiizor.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnLogin.Depth = 0;
             btnLogin.HighEmphasis = true;
             btnLogin.Icon = null;
             btnLogin.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
-            btnLogin.Location = new Point(148, 218);
+            btnLogin.Location = new Point(49, 251);
             btnLogin.Margin = new Padding(4, 5, 4, 5);
             btnLogin.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             btnLogin.Name = "btnLogin";
             btnLogin.NoAccentTextColor = Color.Empty;
-            btnLogin.Size = new Size(110, 45);
+            btnLogin.Size = new Size(300, 45);
             btnLogin.TabIndex = 3;
             btnLogin.Text = "INGRESAR";
             btnLogin.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             btnLogin.UseAccentColor = false;
-            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += BtnLogin_Click;
             // 
             // btnVerContraseña
@@ -149,7 +168,7 @@
             btnVerContraseña.IconColor = Color.FromArgb(222, 0, 0, 0);
             btnVerContraseña.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnVerContraseña.IconSize = 28;
-            btnVerContraseña.Location = new Point(360, 166);
+            btnVerContraseña.Location = new Point(309, 199);
             btnVerContraseña.Name = "btnVerContraseña";
             btnVerContraseña.Size = new Size(40, 28);
             btnVerContraseña.TabIndex = 2;
@@ -160,10 +179,10 @@
             // 
             txtContraseña.BackColor = Color.Transparent;
             txtContraseña.BorderColor = Color.FromArgb(180, 180, 180);
-            txtContraseña.CustomBGColor = Color.White;
+            txtContraseña.CustomBGColor = Color.FromArgb(11, 17, 30);
             txtContraseña.Font = new Font("Tahoma", 11F);
             txtContraseña.ForeColor = Color.DimGray;
-            txtContraseña.Location = new Point(49, 162);
+            txtContraseña.Location = new Point(49, 195);
             txtContraseña.MaxLength = 32767;
             txtContraseña.Multiline = false;
             txtContraseña.Name = "txtContraseña";
@@ -178,10 +197,10 @@
             // 
             txtUsuario.BackColor = Color.Transparent;
             txtUsuario.BorderColor = Color.FromArgb(180, 180, 180);
-            txtUsuario.CustomBGColor = Color.White;
+            txtUsuario.CustomBGColor = Color.FromArgb(11, 17, 30);
             txtUsuario.Font = new Font("Tahoma", 11F);
             txtUsuario.ForeColor = Color.DimGray;
-            txtUsuario.Location = new Point(48, 83);
+            txtUsuario.Location = new Point(48, 116);
             txtUsuario.MaxLength = 32767;
             txtUsuario.Multiline = false;
             txtUsuario.Name = "txtUsuario";
@@ -221,5 +240,6 @@
         private ReaLTaiizor.Controls.MaterialButton btnLogin;
         private ReaLTaiizor.Controls.PoisonLabel lblNombUsuario;
         private ReaLTaiizor.Controls.PoisonLabel lblContraseña;
+        private ReaLTaiizor.Controls.PoisonLabel lblTituloLogin;
     }
 }
