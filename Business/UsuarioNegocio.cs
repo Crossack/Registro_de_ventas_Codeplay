@@ -13,7 +13,7 @@ namespace Registro_de_ventas_Codeplay.Business
     {
         private readonly UsuarioDatos usuarioDatos = new UsuarioDatos();
 
-        public void RegistrarUsuario(Usuario usuario)
+        public async Task RegistrarUsuarioAsync(Usuario usuario, CancellationToken token)
         {
             if (string.IsNullOrWhiteSpace(usuario.NombreUsuario))
             {
@@ -31,21 +31,21 @@ namespace Registro_de_ventas_Codeplay.Business
             {
                 throw new ArgumentException("Seleccione un pais!");
             }
-            if (usuarioDatos.ExisteNombreUsuario(usuario.NombreUsuario, null))
+            if (await usuarioDatos.ExisteNombreUsuarioAsync(usuario.NombreUsuario, null))
             {
                 throw new ArgumentException("Ese nombre de usuario ya esta ocupado!");
             }
 
             usuario.Contraseña = Hasher.GenerarHashSHA256(usuario.Contraseña);
-            usuarioDatos.AgregarUsuario(usuario);
+            await usuarioDatos.AgregarUsuarioAsync(usuario, token);
         }
 
-        public List<Usuario> SolicitarListaUsuarios()
+        public async Task<List<Usuario>> SolicitarListaUsuariosAsync()
         {
-            return usuarioDatos.CargarUsuarios();
+            return await usuarioDatos.CargarUsuariosAsync();
         }
 
-        public void ModificarUsuario(Usuario usuario)
+        public async Task<bool> ModificarUsuarioAsync(Usuario usuario, CancellationToken token)
         {
             if (string.IsNullOrWhiteSpace(usuario.NombreUsuario))
             {
@@ -63,19 +63,18 @@ namespace Registro_de_ventas_Codeplay.Business
             {
                 throw new ArgumentException("Seleccione un pais!");
             }
-            if (usuarioDatos.ExisteNombreUsuario(usuario.NombreUsuario, usuario.IdUsuario))
+            if (await usuarioDatos.ExisteNombreUsuarioAsync(usuario.NombreUsuario, usuario.IdUsuario))
             {
                 throw new ArgumentException("Ese nombre de usuario ya esta ocupado!");
             }
 
             usuario.Contraseña = Hasher.GenerarHashSHA256(usuario.Contraseña);
-
-            usuarioDatos.ActualizarUsuario(usuario);
+            return await usuarioDatos.ActualizarUsuarioAsync(usuario, token);
         }
 
-        public void EliminarUsuario(int idUsuario)
+        public async Task EliminarUsuarioAsync(int idUsuario, CancellationToken token)
         {
-            usuarioDatos.DesactivarUsuario(idUsuario);
+            await usuarioDatos.DesactivarUsuarioAsync(idUsuario, token);
         }
     }
 }

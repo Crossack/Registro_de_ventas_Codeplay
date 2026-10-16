@@ -11,7 +11,7 @@ namespace Registro_de_ventas_Codeplay.Sql
 {
     public class UsuarioDatos
     {
-        public void AgregarUsuario(Usuario usuario)
+        public async Task AgregarUsuarioAsync(Usuario usuario, CancellationToken token)
         {
             const string sql = @"
              INSERT INTO Usuario
@@ -31,8 +31,8 @@ namespace Registro_de_ventas_Codeplay.Sql
                         cmd.Parameters.AddWithValue("@FechaRegistro", DateTime.Today);
                         cmd.Parameters.AddWithValue("@Idpais", usuario.IdPais);
 
-                        conexion.Open();
-                        cmd.ExecuteNonQuery();
+                        await conexion.OpenAsync(token);
+                        await cmd.ExecuteNonQueryAsync(token);
                     }
                 }
             }
@@ -46,12 +46,12 @@ namespace Registro_de_ventas_Codeplay.Sql
             }
         }
 
-        public List<Usuario> CargarUsuarios()
+        public async Task<List<Usuario>> CargarUsuariosAsync()
         {
             List<Usuario> lista = new();
             const string sql = @" 
                 SELECT u.IdUsuario, u.NombreUsuario, u.FechaNac, u.CorreoElectronico, u.FechaRegistro, u.Idpais, 
-                d.NombrePais, u.EstadoCuenta 
+                d.NombrePais, u.EstadoCuenta, u.RowVer
                 FROM Usuario u 
                 INNER JOIN Dispopais d ON u.Idpais = d.Idpais 
                 WHERE EstadoCuenta = 1 
@@ -60,10 +60,10 @@ namespace Registro_de_ventas_Codeplay.Sql
             using (SqlConnection conexion = Conexion.CrearConexion())
             using (SqlCommand cmd = new (sql, conexion))
             {
-                conexion.Open();
-                using (SqlDataReader lector = cmd.ExecuteReader())
+                await conexion.OpenAsync();
+                using (SqlDataReader lector = await cmd.ExecuteReaderAsync())
                 {
-                    while (lector.Read())
+                    while (await lector.ReadAsync())
                     {
                         lista.Add(new Usuario
                         {
@@ -75,6 +75,7 @@ namespace Registro_de_ventas_Codeplay.Sql
                             IdPais = lector.GetInt32(5),
                             Pais = lector.GetString(6),
                             EstadoCuenta = lector.GetBoolean(7),
+                            RowVersion = (byte[])lector[8]
                         });
                     }
                     return lista;
@@ -82,16 +83,16 @@ namespace Registro_de_ventas_Codeplay.Sql
             }
         }
 
-        public void ActualizarUsuario(Usuario usuario)
+        public async Task<bool> ActualizarUsuarioAsync(Usuario usuario, CancellationToken token)
         {
             const string sql = @"
                 UPDATE Usuario
                 SET NombreUsuario=@NombreUsuario, FechaNac=@FechaNac, Hashcontrasena=@Hashcontraseña, 
                 CorreoElectronico=@CorreoElectronico, FechaRegistro=@FechaRegistro, Idpais=@Idpais
-                WHERE Idusuario=@Idusuario;";
+                WHERE Idusuario=@Idusuario AND RowVer=@RowVersion;";
 
             using (SqlConnection conexion = Conexion.CrearConexion())
-            using (SqlCommand cmd = new ( sql, conexion))
+            using (SqlCommand cmd = new (sql, conexion))
             {
                 cmd.Parameters.AddWithValue("@Idusuario", usuario.IdUsuario);
                 cmd.Parameters.AddWithValue("@NombreUsuario", usuario.NombreUsuario);
@@ -100,13 +101,16 @@ namespace Registro_de_ventas_Codeplay.Sql
                 cmd.Parameters.AddWithValue("@CorreoElectronico", usuario.CorreoElectronico);
                 cmd.Parameters.AddWithValue("@FechaRegistro", DateTime.Today);
                 cmd.Parameters.AddWithValue("@Idpais", usuario.IdPais);
+                cmd.Parameters.AddWithValue("@RowVersion", usuario.RowVersion);
 
-                conexion.Open();
-                cmd.ExecuteNonQuery();
+                await conexion.OpenAsync(token);
+                int result = await cmd.ExecuteNonQueryAsync(token);
+
+                return result == 0;
             }
         }
 
-        public void DesactivarUsuario(int idUsuario)
+        public async Task DesactivarUsuarioAsync(int idUsuario, CancellationToken token)
         {
             const string sql = @"
                 UPDATE Usuario
@@ -118,12 +122,12 @@ namespace Registro_de_ventas_Codeplay.Sql
             {
                 cmd.Parameters.AddWithValue("@Idusuario", idUsuario);
 
-                conexion.Open();
-                cmd.ExecuteNonQuery();
+                await conexion.OpenAsync(token);
+                await cmd.ExecuteNonQueryAsync(token);
             }
         }
 
-        public bool ExisteNombreUsuario(string nombreUsuario, int? idUsuario)
+        public async Task<bool> ExisteNombreUsuarioAsync(string nombreUsuario, int? idUsuario)
         {
             const string sql = @"
                 SELECT Idusuario, NombreUsuario
@@ -135,10 +139,10 @@ namespace Registro_de_ventas_Codeplay.Sql
             {
                 cmd.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
 
-                conexion.Open();
-                using (SqlDataReader lector = cmd.ExecuteReader())
+                await conexion.OpenAsync();
+                using (SqlDataReader lector = await cmd.ExecuteReaderAsync())
                 {
-                    if (lector.Read())
+                    if (await lector.ReadAsync())
                     {
                         if (idUsuario == lector.GetInt32(0))
                         {

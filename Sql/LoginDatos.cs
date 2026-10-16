@@ -10,7 +10,7 @@ namespace Registro_de_ventas_Codeplay.Sql
 {
     public class LoginDatos
     {
-        public LoginUsuario? IniciarSesion(string usuario, string contraseña)
+        public async Task<LoginUsuario?> IniciarSesionAsync(string usuario, string contraseña, CancellationToken token)
         {
             string query = @"SELECT u.IdUsuario, u.NombreUsuario, r.Nombre AS Rol 
                  FROM LoginUsuarios u 
@@ -22,10 +22,11 @@ namespace Registro_de_ventas_Codeplay.Sql
             {
                 cmd.Parameters.AddWithValue("@usuario", usuario);
                 cmd.Parameters.AddWithValue("@password", contraseña);
-                conexion.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+
+                await conexion.OpenAsync(token);
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync(token))
                 {
-                    if (reader.Read())
+                    if (await reader.ReadAsync(token))
                     {
                         return new LoginUsuario
                         {

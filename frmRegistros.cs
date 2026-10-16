@@ -20,6 +20,8 @@ namespace Registro_de_ventas_Codeplay
 
         private Usuario? usuarioSeleccionado;
 
+        private CancellationTokenSource? cts;
+
         //Datos para los colores de la ventana principal
 
         private readonly Color ColorFondo = ColorTranslator.FromHtml("#f1f2fc");
@@ -33,13 +35,13 @@ namespace Registro_de_ventas_Codeplay
             InitializeComponent();
         }
 
-        private void CargarPaises()
+        private async Task CargarPaisesAsync()
         {
             try
             {
                 cmbPais.DisplayMember = "NombrePais"; // Asigna los nombres de los paises
                 cmbPais.ValueMember = "Idpais"; // Asigna los id segun la tabla Idpais
-                cmbPais.DataSource = datosNegocios.SolicitarListaPaises();
+                cmbPais.DataSource = await datosNegocios.SolicitarListaPaises();
                 cmbPais.SelectedIndex = -1;
             }
             catch (Exception ex)
@@ -52,15 +54,18 @@ namespace Registro_de_ventas_Codeplay
             }
         }
 
-        private void btnRegistrar_Click(object sender, EventArgs e)
+        private async void btnRegistrar_Click(object sender, EventArgs e)
         {
-            if (!ValidarDatos())
-            {
-                return;
-            }
+            btnRegistrar.Enabled = false;
+            cts = new CancellationTokenSource();
 
             try
             {
+                if (!ValidarDatos())
+                {
+                    return;
+                }
+
                 Usuario usuario = new Usuario
                 {
                     IdUsuario = usuarioSeleccionado == null ? 0 : usuarioSeleccionado.IdUsuario,
@@ -69,24 +74,32 @@ namespace Registro_de_ventas_Codeplay
                     FechaNacimiento = dtpFechaNac.Value.Date,
                     FechaRegistro = usuarioSeleccionado?.FechaRegistro,
                     CorreoElectronico = txtCorreo.Text.Trim(),
-                    IdPais = Convert.ToInt32(cmbPais.SelectedValue)
+                    IdPais = Convert.ToInt32(cmbPais.SelectedValue),
+                    RowVersion = usuarioSeleccionado?.RowVersion
                 };
 
                 if (usuarioSeleccionado is null)
                 {
-                    usuarioNegocio.RegistrarUsuario(usuario);
+                    await usuarioNegocio.RegistrarUsuarioAsync(usuario, cts.Token);
                 }
                 else
                 {
-                    usuarioNegocio.ModificarUsuario(usuario);
+                    if (await usuarioNegocio.ModificarUsuarioAsync(usuario, cts.Token))
+                    {
+                        MessageBox.Show(
+                            "Otro operador ya modifico este registro, intentelo de nuevo",
+                            "Incoherencia de registro",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        await CargarDatosAsync();
+                        return;
+                    }
                 }
 
                 MessageBox.Show("El usuario se guardo exitosamente",
                     "Guardado",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-
-                LimpiarFormulario();
             }
             catch (ArgumentException ex)
             {
@@ -102,7 +115,16 @@ namespace Registro_de_ventas_Codeplay
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-            CargarDatos();
+            finally
+            {
+                cts.Cancel();
+                cts.Dispose();
+                cts = null;
+                LimpiarFormulario();
+                btnRegistrar.Enabled = true;
+            }
+            // Si ValidarDatos() falla, evita cargar los datos innecesariamente
+            await CargarDatosAsync();
         }
 
 
@@ -164,11 +186,11 @@ namespace Registro_de_ventas_Codeplay
         }
 
         // Carga y refresca la lista de la tabla usuarios
-        private void CargarDatos()
+        private async Task CargarDatosAsync()
         {
             try
             {
-                dgvRegistros.DataSource = usuarioNegocio.SolicitarListaUsuarios();
+                dgvRegistros.DataSource = await usuarioNegocio.SolicitarListaUsuariosAsync();
             }
             catch (Exception ex)
             {
@@ -180,13 +202,14 @@ namespace Registro_de_ventas_Codeplay
         }
 
         // Inicializacion del formulario y carga los nuevos cambios
-        private void frmRegistros_Load(object sender, EventArgs e)
+        private async void frmRegistros_Load(object sender, EventArgs e)
         {
-            CargarDatos();
-            CargarPaises();
+            await CargarDatosAsync();
+            await CargarPaisesAsync();
 
             dgvRegistros.Columns["Contraseña"].Visible = false;
             dgvRegistros.Columns["IdPais"].Visible = false;
+            dgvRegistros.Columns["RowVersion"].Visible = false;
 
             lblBienvenida.Text = $"{SesionActiva.NombreUsuario} ({SesionActiva.RolUsuario})";
             if (SesionActiva.RolUsuario == "Lector")
@@ -204,6 +227,9 @@ namespace Registro_de_ventas_Codeplay
 
             if (confirmar == DialogResult.Yes)
             {
+                cts?.Cancel();
+                cts?.Dispose();
+                cts = null;
                 Close();
             }
 
@@ -359,7 +385,7 @@ namespace Registro_de_ventas_Codeplay
             btnRegistrar.Text = "&Actualizar";
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private async void btnEliminar_Click(object sender, EventArgs e)
         {
             if (dgvRegistros.CurrentRow?.DataBoundItem is not Usuario usuario)
             {
@@ -371,6 +397,9 @@ namespace Registro_de_ventas_Codeplay
                 return;
             }
 
+            btnEliminar.Enabled = false;
+            cts = new CancellationTokenSource();
+
             DialogResult confirmarEliminarUsuario = MessageBox.Show(
                 $"Estas seguro que quieres eliminar el usuario {usuario.NombreUsuario}?",
                 "Confirmar eliminacion",
@@ -379,16 +408,34 @@ namespace Registro_de_ventas_Codeplay
 
             if (confirmarEliminarUsuario == DialogResult.Yes)
             {
-                usuarioNegocio.EliminarUsuario(usuario.IdUsuario);
-                MessageBox.Show(
-                    $"Usuario {usuario.NombreUsuario} eliminado!",
-                    "Usuario eliminado",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
-
+                try
+                {
+                    await usuarioNegocio.EliminarUsuarioAsync(usuario.IdUsuario, cts.Token);
+                    MessageBox.Show(
+                        $"Usuario {usuario.NombreUsuario} eliminado!",
+                        "Usuario eliminado",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                }
+                catch (OperationCanceledException)
+                {
+                    MessageBox.Show(
+                        "Se cancelo la operacion!",
+                        "Detener operacion",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                finally
+                {
+                    cts.Cancel();
+                    cts.Dispose();
+                    cts = null;
+                }
                 LimpiarFormulario();
-                CargarDatos();
+                await CargarDatosAsync();
             }
+
+            btnEliminar.Enabled = true;
         }
     }
 }

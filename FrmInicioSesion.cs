@@ -7,6 +7,7 @@ namespace Registro_de_ventas_Codeplay
     public partial class FrmInicioSesion : Form
     {
         private bool verContraseña = false;
+        private CancellationTokenSource? cts;
         private readonly LoginNegocios loginNegocios = new LoginNegocios();
 
         public FrmInicioSesion()
@@ -29,11 +30,15 @@ namespace Registro_de_ventas_Codeplay
             txtContraseña.UseSystemPasswordChar = !verContraseña;
         }
 
-        private void BtnLogin_Click(object sender, EventArgs e)
+        private async void BtnLogin_Click(object sender, EventArgs e)
         {
+            btnLogin.Enabled = false;
+            btnLogin.Text = "Procesando...";
+            cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+            
             try
             {
-                bool acceso = loginNegocios.ValidarSesion(txtUsuario.Text.Trim(), txtContraseña.Text);
+                bool acceso = await loginNegocios.ValidarSesionAsync(txtUsuario.Text.Trim(), txtContraseña.Text, cts.Token);
 
                 if (acceso)
                 {
@@ -58,12 +63,27 @@ namespace Registro_de_ventas_Codeplay
             {
                 MessageBox.Show(ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            catch (OperationCanceledException)
+            {
+                MessageBox.Show(
+                    "Tiempo de espera del servidor agotado. Por favor revise la base de datos",
+                    "Tiempo de espera agotado",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al iniciar sesion: " + ex.Message,
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+            }
+            finally
+            {
+                cts.Dispose();
+                cts = null;
+                btnLogin.Enabled = true;
+                btnLogin.Text = "INGRESAR";
             }
         }
 

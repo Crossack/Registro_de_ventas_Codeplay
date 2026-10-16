@@ -17,5 +17,6 @@ namespace Registro_de_ventas_Codeplay.Models
         public int IdPais { get; set; }
         public string Pais { get; set; } = string.Empty;
         public bool EstadoCuenta { get; set; }
+        public byte[]? RowVersion { get; set; }
     }
 }
