@@ -10,19 +10,21 @@ namespace Registro_de_ventas_Codeplay.Sql
 {
     public class PaisesDatos
     {
-        public DataTable CargarPaises()
+        public async Task<DataTable> CargarPaisesAsync()
         {
-            string query = @"SELECT Idpais, NombrePais FROM Dispopais ORDER BY NombrePais ASC";
+            const string query = @"SELECT Idpais, NombrePais FROM Dispopais ORDER BY NombrePais ASC";
 
             // Crea la conexion, la consulta y obtiene los datos de los paises
             using (SqlConnection conexion = Conexion.CrearConexion())
             using (SqlCommand cmd = new SqlCommand(query, conexion))
-            using (SqlDataAdapter adaptador = new SqlDataAdapter(cmd))
             {
-                conexion.Open();
-                DataTable dataTable = new DataTable();
-                adaptador.Fill(dataTable);
-                return dataTable;
+                await conexion.OpenAsync();
+                using (SqlDataReader lector = await cmd.ExecuteReaderAsync())
+                {
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(lector);
+                    return dataTable;
+                }
             }
         }
     }

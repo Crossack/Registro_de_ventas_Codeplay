@@ -11,7 +11,7 @@ namespace Registro_de_ventas_Codeplay.Sql
     {
         private const string archivoConexion = "conexion.txt";
 
-        public static string ObtenerConexion()
+        private static string ObtenerConexion()
         {
             string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, archivoConexion);
 
