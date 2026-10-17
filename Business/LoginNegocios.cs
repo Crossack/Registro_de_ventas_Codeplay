@@ -12,7 +12,7 @@ namespace Registro_de_ventas_Codeplay.Business
     public class LoginNegocios
     {
         private readonly LoginDatos loginDatos = new LoginDatos();
-        public bool ValidarSesion(string usuario, string contraseña)
+        public async Task<bool> ValidarSesionAsync(string usuario, string contraseña, CancellationToken token)
         {
             if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(contraseña))
             {
@@ -22,7 +22,7 @@ namespace Registro_de_ventas_Codeplay.Business
             string hash = Hasher.GenerarHashSHA256(contraseña);
 
             // Validar existencia en la capa de datos
-            Usuario? usuarioValido = loginDatos.IniciarSesion(usuario, hash);
+            LoginUsuario? usuarioValido = await loginDatos.IniciarSesionAsync(usuario, hash, token);
 
             if (usuarioValido == null)
             {

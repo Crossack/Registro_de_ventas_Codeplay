@@ -11,9 +11,9 @@ namespace Registro_de_ventas_Codeplay.Business
     public class DatosNegocios
     {
         private readonly PaisesDatos paisesDatos = new PaisesDatos();
-        public DataTable SolicitarListaPaises()
+        public async Task<DataTable> SolicitarListaPaises()
         {
-            return paisesDatos.CargarPaises();
+            return await paisesDatos.CargarPaisesAsync();
         }
     }
 }
