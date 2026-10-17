@@ -14,9 +14,10 @@ namespace Registro_de_ventas_Codeplay.Sql
         public async Task AgregarUsuarioAsync(Usuario usuario, CancellationToken token)
         {
             const string sql = @"
-             INSERT INTO Usuario
+             INSERT INTO Usuario (NombreUsuario, FechaNac, CorreoElectronico, Hashcontrasena,
+             FechaRegistro, Idpais, EstadoCuenta)
              VALUES
-             (@NombreUsuario, @FechaNac, @CorreoElectronico, @Hashcontrasena, @FechaRegistro, @idpais, 1)";
+             (@NombreUsuario, @FechaNac, @CorreoElectronico, @Hashcontrasena, @FechaRegistro, @Idpais, 1)";
 
             try
             {
@@ -26,8 +27,8 @@ namespace Registro_de_ventas_Codeplay.Sql
                     {
                         cmd.Parameters.AddWithValue("@NombreUsuario", usuario.NombreUsuario);
                         cmd.Parameters.AddWithValue("@FechaNac", usuario.FechaNacimiento);
-                        cmd.Parameters.AddWithValue("@Hashcontrasena", usuario.Contraseña);
                         cmd.Parameters.AddWithValue("@CorreoElectronico", usuario.CorreoElectronico);
+                        cmd.Parameters.AddWithValue("@Hashcontrasena", usuario.Contraseña);
                         cmd.Parameters.AddWithValue("@FechaRegistro", DateTime.Today);
                         cmd.Parameters.AddWithValue("@Idpais", usuario.IdPais);
 
