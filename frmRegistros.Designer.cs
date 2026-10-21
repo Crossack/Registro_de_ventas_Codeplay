@@ -127,7 +127,7 @@
             btnSalir.Icon = null;
             btnSalir.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
             btnSalir.Location = new Point(209, 337);
-            btnSalir.Margin = new Padding(4);
+            btnSalir.Margin = new Padding(4, 4, 4, 4);
             btnSalir.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             btnSalir.Name = "btnSalir";
             btnSalir.NoAccentTextColor = Color.Empty;
@@ -148,7 +148,7 @@
             btnRegistrar.Icon = null;
             btnRegistrar.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
             btnRegistrar.Location = new Point(30, 337);
-            btnRegistrar.Margin = new Padding(4);
+            btnRegistrar.Margin = new Padding(4, 4, 4, 4);
             btnRegistrar.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.NoAccentTextColor = Color.Empty;
@@ -332,7 +332,8 @@
             // dtpFechaNac
             // 
             dtpFechaNac.FontSize = ReaLTaiizor.Extension.Poison.PoisonDateTimeSize.Medium;
-            dtpFechaNac.Location = new Point(77, 167);
+            dtpFechaNac.Format = DateTimePickerFormat.Short;
+            dtpFechaNac.Location = new Point(77, 165);
             dtpFechaNac.Margin = new Padding(3, 2, 3, 2);
             dtpFechaNac.MinimumSize = new Size(0, 29);
             dtpFechaNac.Name = "dtpFechaNac";
@@ -476,7 +477,7 @@
             btnEditar.Icon = null;
             btnEditar.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
             btnEditar.Location = new Point(511, 292);
-            btnEditar.Margin = new Padding(4);
+            btnEditar.Margin = new Padding(4, 4, 4, 4);
             btnEditar.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             btnEditar.Name = "btnEditar";
             btnEditar.NoAccentTextColor = Color.Empty;
@@ -497,11 +498,11 @@
             btnEliminar.Icon = null;
             btnEliminar.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
             btnEliminar.Location = new Point(668, 292);
-            btnEliminar.Margin = new Padding(4);
+            btnEliminar.Margin = new Padding(4, 4, 4, 4);
             btnEliminar.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             btnEliminar.Name = "btnEliminar";
             btnEliminar.NoAccentTextColor = Color.Empty;
-            btnEliminar.Size = new Size(88, 36);
+            btnEliminar.Size = new Size(98, 36);
             btnEliminar.TabIndex = 9;
             btnEliminar.Text = "&ELIMINAR";
             btnEliminar.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -527,6 +528,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmRegistros";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "! BIENVENIDO !";
             Load += frmRegistros_Load;
             ((System.ComponentModel.ISupportInitialize)dgvRegistros).EndInit();

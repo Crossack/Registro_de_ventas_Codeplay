@@ -100,6 +100,7 @@ namespace Registro_de_ventas_Codeplay
                     "Guardado",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                LimpiarFormulario();
             }
             catch (ArgumentException ex)
             {
@@ -120,7 +121,6 @@ namespace Registro_de_ventas_Codeplay
                 cts.Cancel();
                 cts.Dispose();
                 cts = null;
-                LimpiarFormulario();
                 btnRegistrar.Enabled = true;
             }
             // Si ValidarDatos() falla, evita cargar los datos innecesariamente
@@ -214,7 +214,8 @@ namespace Registro_de_ventas_Codeplay
             lblBienvenida.Text = $"{SesionActiva.NombreUsuario} ({SesionActiva.RolUsuario})";
             if (SesionActiva.RolUsuario == "Lector")
             {
-                grpRegistroEst.Enabled = false;
+                btnEditar.Enabled = false;
+                btnEliminar.Enabled = false;
             }
 
             AplicarCoolores();

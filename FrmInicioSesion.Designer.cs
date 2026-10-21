@@ -47,9 +47,9 @@
             // 
             lnkContraseña.AutoSize = true;
             lnkContraseña.Font = new Font("Consolas", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lnkContraseña.Location = new Point(103, 393);
+            lnkContraseña.Location = new Point(112, 393);
             lnkContraseña.Name = "lnkContraseña";
-            lnkContraseña.Size = new Size(161, 14);
+            lnkContraseña.Size = new Size(184, 18);
             lnkContraseña.TabIndex = 3;
             lnkContraseña.TabStop = true;
             lnkContraseña.Text = "¿Olvidé mi contraseña?\r\n";
@@ -96,7 +96,7 @@
             lblContraseña.Font = new Font("Consolas", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblContraseña.Location = new Point(49, 174);
             lblContraseña.Name = "lblContraseña";
-            lblContraseña.Size = new Size(88, 17);
+            lblContraseña.Size = new Size(99, 20);
             lblContraseña.TabIndex = 6;
             lblContraseña.Text = "CONTRASEÑA";
             lblContraseña.UseCustomFont = true;
@@ -168,7 +168,7 @@
             btnVerContraseña.IconColor = Color.FromArgb(222, 0, 0, 0);
             btnVerContraseña.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnVerContraseña.IconSize = 28;
-            btnVerContraseña.Location = new Point(351, 195);
+            btnVerContraseña.Location = new Point(354, 200);
             btnVerContraseña.Name = "btnVerContraseña";
             btnVerContraseña.Size = new Size(31, 28);
             btnVerContraseña.TabIndex = 2;
@@ -187,7 +187,7 @@
             txtContraseña.Multiline = false;
             txtContraseña.Name = "txtContraseña";
             txtContraseña.ReadOnly = false;
-            txtContraseña.Size = new Size(300, 28);
+            txtContraseña.Size = new Size(299, 33);
             txtContraseña.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             txtContraseña.TabIndex = 2;
             txtContraseña.TextAlignment = HorizontalAlignment.Left;
@@ -205,7 +205,7 @@
             txtUsuario.Multiline = false;
             txtUsuario.Name = "txtUsuario";
             txtUsuario.ReadOnly = false;
-            txtUsuario.Size = new Size(300, 28);
+            txtUsuario.Size = new Size(300, 33);
             txtUsuario.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             txtUsuario.TabIndex = 1;
             txtUsuario.TextAlignment = HorizontalAlignment.Left;
@@ -214,7 +214,7 @@
             // FrmInicioSesion
             // 
             AcceptButton = btnLogin;
-            AutoScaleDimensions = new SizeF(6F, 13F);
+            AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(410, 424);
             Controls.Add(gbxLogin);
