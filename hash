@@ -1,0 +1,117 @@
+[33mcommit c5a1df887ef032fbbe6a8804803f80dac2e107e8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 10c147f 6a8a7f3
+Author: Mike <brawlermartinez577@gmail.com>
+Date:   Sat Sep 26 10:00:44 2026 -0600
+
+    Merge pull request #4 from Crossack/DiseñoMejoraInterfaz
+    
+    Mejora del diseño de la interfaz, correcion de bugs, correcion de conflictos (merge).
+
+[33mcommit 6a8a7f3b8268d31d64a3a501c5b7934477f96cc9[m[33m ([m[1;31morigin/DiseñoMejoraInterfaz[m[33m)[m
+Merge: 3aa55fa 10c147f
+Author: Mayk <sotelomaykel@gmail.com>
+Date:   Sat Sep 26 09:34:12 2026 -0600
+
+    Resolucion de conflicto main/DiseñoMejoraInterfaz
+
+[33mcommit 3aa55fafe9d5fca41527c794bf36757a0c7e0b10[m
+Author: Mayk <sotelomaykel@gmail.com>
+Date:   Sat Sep 26 09:00:45 2026 -0600
+
+    Mejoras de comentarios y en general
+
+[33mcommit 0073c0333c3d9ab799d2191fd98e86bf5a2bd9ba[m
+Author: Mayk <sotelomaykel@gmail.com>
+Date:   Fri Sep 18 23:02:23 2026 -0600
+
+    Mejora del diseño de la interfaz mediante paquetes NUgets como RaizorTale o FontView, Correciones en el codigo y creacion de nuevo metodo para aplicar los cambios de colores desde el codigo
+
+[33mcommit 10c147f5598f1bd510921787ab96a1495a65807c[m
+Author: Crossack <powercraft950@gmail.com>
+Date:   Fri Sep 18 17:06:23 2026 -0600
+
+    Actualizacion de datos de la base de datos (.sql / .bak)
+
+[33mcommit d0c6af2d633c6c98cc76d7a22d173a96d2f319b3[m
+Author: Crossack <powercraft950@gmail.com>
+Date:   Fri Sep 18 16:47:33 2026 -0600
+
+    Hasheo de contraseñas, arquitectura en capas y separacion de responsabilidades implementada. Mejoras en la validacion de datos y tolerancia de errores.
+
+[33mcommit 1a41c1d247c0d0ac75a471d64b3618e19eac74d8[m
+Merge: 37c794f d38f0d5
+Author: Crossack <powercraft950@gmail.com>
+Date:   Sat Sep 5 17:18:06 2026 -0600
+
+    Merge pull request #3 from Crossack/hacner
+    
+    Mejoras en el diseño del formulario de registro de ventas, mejoras en el boton de salir y comentarios del codigo del registro
+
+[33mcommit d38f0d53884a313fd9d834ca32ea621576aae8a8[m[33m ([m[1;32mhacner[m[33m)[m
+Author: hacnercuadra31-sudo <hacnercuadra31@gmail.com>
+Date:   Sat Sep 5 08:36:30 2026 -0600
+
+    mejoras en el diseño del formulario de registro de ventas, mejoras en el boton de salir y comentaris del codigo del registro
+
+[33mcommit 37c794f488667b7faab5259d862b6a36f1fd0fd4[m
+Author: Mike <brawlermartinez577@gmail.com>
+Date:   Sat Sep 5 08:13:53 2026 -0600
+
+    CodeplayReadme
+
+[33mcommit 784db5415d49b4f420fbebdc19f7d07714fdfd0f[m
+Author: Crossack <powercraft950@gmail.com>
+Date:   Fri Sep 4 02:13:32 2026 -0600
+
+    Mejoras en el login, manejo de errores y en el datagridview del registro, adicion de roles en el registro.
+
+[33mcommit 9ca37e06da6a77c7abc40ac29d58ceb2c730d329[m
+Merge: 43f7e0d 89f1e48
+Author: Crossack <powercraft950@gmail.com>
+Date:   Thu Sep 3 23:58:29 2026 -0600
+
+    Merge pull request #1 from Crossack/hacner
+    
+    Fusion de la rama "hacner", adicion del registro de cuentas de usuario
+
+[33mcommit 89f1e48f2608f460f308e323e5029fce80144d32[m
+Author: hacnercuadra31-sudo <hacnercuadra31@gmail.com>
+Date:   Thu Sep 3 23:21:25 2026 -0600
+
+    Editar el registro de cuentas de usuarios code play, conectar los registros de las cuentas de los usuarios en el datagridview
+
+[33mcommit 43f7e0dedfb59fca0c3de30b16926658d36e292a[m
+Author: Crossack <powercraft950@gmail.com>
+Date:   Wed Sep 2 01:46:17 2026 -0600
+
+    Adicion de usuarios y roles en el login. Mejoras en las conexiones.
+
+[33mcommit 71eed1cc1567dc3b0837824a627efc011137c17f[m
+Author: hacnercuadra31-sudo <hacnercuadra31@gmail.com>
+Date:   Tue Sep 1 23:01:23 2026 -0600
+
+    creacion del registro de usuario
+
+[33mcommit bb28ab04f1289681ff71d20525c78cfffd66998d[m
+Author: Crossack <powercraft950@gmail.com>
+Date:   Tue Sep 1 20:33:59 2026 -0600
+
+    Adiccion de la base de datos (.sql)
+
+[33mcommit 07bdb96651b99ce4e8d7d1f4d5b7b08c1893a0fc[m
+Author: Crossack <powercraft950@gmail.com>
+Date:   Tue Sep 1 18:06:14 2026 -0600
+
+    mejoras y compatibilidad en la cadena conexion
+
+[33mcommit ee6c3835bf04e14f1f57e6bba648631dda0d9739[m
+Author: Crossack <powercraft950@gmail.com>
+Date:   Tue Sep 1 17:13:08 2026 -0600
+
+    Primer B commit: version base/alpha
+
+[33mcommit 1745b549a332528c3caaf21e0bf9d7bab6d313e2[m
+Author: Crossack <powercraft950@gmail.com>
+Date:   Tue Sep 1 16:59:22 2026 -0600
+
+    Primer commit: version base/alpha
