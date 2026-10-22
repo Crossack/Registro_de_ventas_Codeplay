@@ -11,5 +11,7 @@ namespace Registro_de_ventas_Codeplay.Models
         public int Id { get; set; }
         public string Nombre { get; set; } = string.Empty;
         public string Rol { get; set; } = string.Empty;
+        public string? Pregunta {  get; set; } = string.Empty;
+        public string? Respuesta {  get; set; } = string.Empty;
     }
 }

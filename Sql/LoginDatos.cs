@@ -39,5 +39,35 @@ namespace Registro_de_ventas_Codeplay.Sql
             }
         return null;
         }
+
+        public LoginUsuario? SolicitarLoginUsuario(string usuario)
+        {
+            string sql = @"SELECT NombreUsuario, Pregunta, Respuesta 
+                FROM LoginUsuarios
+                WHERE NombreUsuario = @usuario;";
+
+            using (SqlConnection conexion = Conexion.CrearConexion())
+            using (SqlCommand cmd = new SqlCommand(sql, conexion))
+            {
+                cmd.Parameters.AddWithValue("@usuario", usuario);
+
+                conexion.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new LoginUsuario
+                        {
+                            Nombre = reader.GetString(0),
+                            Pregunta = reader.GetString(1),
+                            Respuesta = reader.GetString(2)
+                        };
+                    }
+                }
+           
+            }
+            return null;
+        }
     }
 }

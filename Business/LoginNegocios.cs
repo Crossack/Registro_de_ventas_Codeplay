@@ -38,5 +38,13 @@ namespace Registro_de_ventas_Codeplay.Business
         {
             SesionActiva.Cerrar();
         }
+
+        public LoginUsuario? CargarLoginUsuario(string usuario)
+        {
+            
+           return  loginDatos.SolicitarLoginUsuario(usuario); 
+
+            
+        }
     }
 }
