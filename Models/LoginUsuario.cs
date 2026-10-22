@@ -6,10 +6,20 @@ using System.Threading.Tasks;
 
 namespace Registro_de_ventas_Codeplay.Models
 {
+    public class Rol
+    {
+        public int IdRol { get; set; }
+        public string? NombreRol { get; set; }
+    }
+
     public class LoginUsuario
     {
         public int Id { get; set; }
         public string Nombre { get; set; } = string.Empty;
-        public string Rol { get; set; } = string.Empty;
+        public string Contraseña { get; set; } = string.Empty;
+        public int IdRol { get; set; }
+
+        // Para INNER JOIN en EF Core
+        public Rol? Rol { get; set; }
     }
 }

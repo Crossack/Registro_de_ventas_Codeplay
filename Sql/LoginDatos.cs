@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Registro_de_ventas_Codeplay.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace Registro_de_ventas_Codeplay.Sql
     {
         public async Task<LoginUsuario?> IniciarSesionAsync(string usuario, string contraseña, CancellationToken token)
         {
-            string query = @"SELECT u.IdUsuario, u.NombreUsuario, r.Nombre AS Rol 
+            // ADO.NET (Antiguo)
+            /*string query = @"SELECT u.IdUsuario, u.NombreUsuario, r.Nombre AS Rol 
                  FROM LoginUsuarios u 
                  INNER JOIN Roles r ON u.IdRol = r.IdRol 
                  WHERE u.NombreUsuario = @usuario AND u.PasswordHash = @password";
@@ -38,6 +40,15 @@ namespace Registro_de_ventas_Codeplay.Sql
                 }
             }
         return null;
+        } */
+
+            // EF Core
+            using (var db = new LoginConexionEFCore())
+            {
+                return await db.LoginUsuarios.AsNoTracking().Include(u => u.Rol).FirstOrDefaultAsync(
+                    u => u.Nombre == usuario &&
+                    u.Contraseña == contraseña, token);
+            }
         }
     }
 }

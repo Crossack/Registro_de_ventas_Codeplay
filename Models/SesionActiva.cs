@@ -17,7 +17,7 @@ namespace Registro_de_ventas_Codeplay.Models
         {
             IdUsuario = usuario.Id;
             NombreUsuario = usuario.Nombre;
-            RolUsuario = usuario.Rol;
+            RolUsuario = usuario.Rol?.NombreRol;
         }
 
         public static void Cerrar()
