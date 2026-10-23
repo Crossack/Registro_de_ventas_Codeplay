@@ -33,6 +33,11 @@ namespace Registro_de_ventas_Codeplay
         public frmRegistros()
         {
             InitializeComponent();
+
+            if (!DesignMode && LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+            {
+                
+            }
         }
 
         private async Task CargarPaisesAsync()
