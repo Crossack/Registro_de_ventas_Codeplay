@@ -500,11 +500,7 @@
             // frmRegistros
             // 
             AcceptButton = btnRegistrar;
-<<<<<<< Updated upstream
-            AutoScaleDimensions = new SizeF(10F, 25F);
-=======
             AutoScaleDimensions = new SizeF(8F, 20F);
->>>>>>> Stashed changes
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 247, 250);
             CancelButton = btnSalir;
@@ -517,10 +513,7 @@
             Controls.Add(grpRegistroEst);
             Controls.Add(dgvRegistros);
             Icon = (Icon)resources.GetObject("$this.Icon");
-<<<<<<< Updated upstream
             Margin = new Padding(4, 3, 4, 3);
-=======
->>>>>>> Stashed changes
             Name = "frmRegistros";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "! BIENVENIDO !";
