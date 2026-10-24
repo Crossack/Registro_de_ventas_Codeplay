@@ -27,7 +27,7 @@ namespace Registro_de_ventas_Codeplay
                     if (esAdmin)
                     {
                         // Si cumple los requisitos, arranca directamente en el nuevo panel de Admin
-                        Application.Run(new AdminForms());
+                        Application.Run(new FrmPanelCodeplay());
                     }
                     else
                     {
