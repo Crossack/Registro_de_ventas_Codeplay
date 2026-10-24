@@ -27,8 +27,20 @@ namespace Registro_de_ventas_Codeplay
             InitializeComponent();
         }
 
+        private void VincularMetodos()
+        {
+            mbtnListaUsuarios.Click += BtnOpcionListaUsuario_Click;
+            mbtnRegistroUsuarios.Click += BtnMenuRegistroUsuarios_Click;
+            mbtnEstadisticas.Click += BtnOpcionEstadistica_Click;
+            mbtnMenuReportes.Click += BtnOpcionReportes_Click;
+            mbtnSalir.Click += BtnSalir_Click;
+        }
+
         private void FrmPanelCodeplay_Load(object sender, EventArgs e)
         {
+            VincularMetodos();
+            pnlSubMenuReportes.Visible = false;
+            
             // Hola Mundo!
             lblBienvenida.Text =
                 $"Bienvenido {SesionActiva.NombreUsuario} | {SesionActiva.RolUsuario}";
@@ -39,6 +51,16 @@ namespace Registro_de_ventas_Codeplay
         {
             pnlMenuListaUsuario.Visible = true;
             pnlMenuEstadisticas.Visible = false;
+        }
+
+        private void BtnMenuRegistroUsuarios_Click(object sender, EventArgs e)
+        {
+            Hide();
+            using (frmRegistros registros = new frmRegistros())
+            {
+                registros.ShowDialog();
+            }
+            Show();
         }
 
         private void BtnOpcionEstadistica_Click(object sender, EventArgs e)
@@ -55,6 +77,7 @@ namespace Registro_de_ventas_Codeplay
 
         private void BtnSalir_Click(object sender, EventArgs e)
         {
+            SesionActiva.Cerrar();
             Close();
         }
 

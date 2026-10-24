@@ -16,8 +16,10 @@ namespace Registro_de_ventas_Codeplay
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            while (true)
             using (FrmInicioSesion Login = new FrmInicioSesion())
             {
+                Login.DialogResult = DialogResult.None;
                 if (Login.ShowDialog() == DialogResult.OK)
                 {
                     // Verificamos si el rol guardado en SesionActiva es Administrador
@@ -34,6 +36,10 @@ namespace Registro_de_ventas_Codeplay
                         // Si es usuario normal, abre tu formulario frmRegistros original
                         Application.Run(new frmRegistros());
                     }
+                }
+                else
+                {
+                    break;
                 }
             }
         }

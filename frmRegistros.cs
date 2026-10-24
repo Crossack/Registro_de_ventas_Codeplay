@@ -236,6 +236,7 @@ namespace Registro_de_ventas_Codeplay
                 cts?.Cancel();
                 cts?.Dispose();
                 cts = null;
+                SesionActiva.Cerrar();
                 Close();
             }
 

@@ -126,11 +126,11 @@
             btnSalir.Icon = null;
             btnSalir.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
             btnSalir.Location = new Point(239, 449);
-            btnSalir.Margin = new Padding(5, 5, 5, 5);
+            btnSalir.Margin = new Padding(5);
             btnSalir.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             btnSalir.Name = "btnSalir";
             btnSalir.NoAccentTextColor = Color.Empty;
-            btnSalir.Size = new Size(84, 45);
+            btnSalir.Size = new Size(80, 45);
             btnSalir.TabIndex = 7;
             btnSalir.Text = "&Salir";
             btnSalir.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -147,7 +147,7 @@
             btnRegistrar.Icon = null;
             btnRegistrar.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
             btnRegistrar.Location = new Point(34, 449);
-            btnRegistrar.Margin = new Padding(5, 5, 5, 5);
+            btnRegistrar.Margin = new Padding(5);
             btnRegistrar.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.NoAccentTextColor = Color.Empty;
@@ -182,10 +182,10 @@
             grpRegistroEst.Depth = 0;
             grpRegistroEst.ForeColor = Color.FromArgb(222, 0, 0, 0);
             grpRegistroEst.Location = new Point(0, 65);
-            grpRegistroEst.Margin = new Padding(17, 17, 17, 17);
+            grpRegistroEst.Margin = new Padding(17);
             grpRegistroEst.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             grpRegistroEst.Name = "grpRegistroEst";
-            grpRegistroEst.Padding = new Padding(17, 17, 17, 17);
+            grpRegistroEst.Padding = new Padding(17);
             grpRegistroEst.Size = new Size(376, 516);
             grpRegistroEst.TabIndex = 9;
             // 
@@ -395,11 +395,11 @@
             materialCard1.Dock = DockStyle.Top;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
             materialCard1.Location = new Point(0, 0);
-            materialCard1.Margin = new Padding(17, 17, 17, 17);
+            materialCard1.Margin = new Padding(17);
             materialCard1.MaximumSize = new Size(0, 65);
             materialCard1.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(17, 17, 17, 17);
+            materialCard1.Padding = new Padding(17);
             materialCard1.Size = new Size(1163, 65);
             materialCard1.TabIndex = 2;
             // 
@@ -464,7 +464,7 @@
             btnEditar.Icon = null;
             btnEditar.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
             btnEditar.Location = new Point(584, 389);
-            btnEditar.Margin = new Padding(5, 5, 5, 5);
+            btnEditar.Margin = new Padding(5);
             btnEditar.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             btnEditar.Name = "btnEditar";
             btnEditar.NoAccentTextColor = Color.Empty;
@@ -485,7 +485,7 @@
             btnEliminar.Icon = null;
             btnEliminar.IconType = ReaLTaiizor.Controls.MaterialButton.MaterialIconType.Rebase;
             btnEliminar.Location = new Point(763, 389);
-            btnEliminar.Margin = new Padding(5, 5, 5, 5);
+            btnEliminar.Margin = new Padding(5);
             btnEliminar.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.HOVER;
             btnEliminar.Name = "btnEliminar";
             btnEliminar.NoAccentTextColor = Color.Empty;
