@@ -94,11 +94,10 @@ namespace Registro_de_ventas_Codeplay
 
         private void LnkContraseña_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                "En construccion!",
-                "",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Warning);
+            using (FrmRecuperacionContraseña frmRecuperacionContraseña = new())
+            {
+                frmRecuperacionContraseña.ShowDialog();
+            }
         }
     }
 }

@@ -50,5 +50,43 @@ namespace Registro_de_ventas_Codeplay.Sql
                     u.Contraseña == contraseña, token);
             }
         }
+
+        public async Task<string?> ExisteUsuarioAsync(string nombreUsuario, CancellationToken token)
+        {
+            using (var db = new LoginConexionEFCore())
+            {
+                return await db.LoginUsuarios
+                    .AsNoTracking()
+                    .Where(u => u.Nombre == nombreUsuario.Trim())
+                    .Select(u => u.PreguntaRec)
+                    .FirstOrDefaultAsync(token);
+            }
+        }
+
+        public async Task<bool> RevisarRepuestaRecuperacionAsync(string nombreUsuario, string respuesta, CancellationToken token)
+        {
+            using (var db = new LoginConexionEFCore())
+            {
+                return await db.LoginUsuarios
+                    .AsNoTracking()
+                    .AnyAsync(u => u.Nombre == nombreUsuario && u.RespuestaRec == respuesta, token);
+            }
+        }
+
+        public async Task<bool> ActualizarContraseñaAsync(string? nombreUsuario, string contraseña, CancellationToken token)
+        {
+            using (var db = new LoginConexionEFCore())
+            {
+                var usuario = await db.LoginUsuarios.FirstOrDefaultAsync(u => u.Nombre == nombreUsuario, token);
+
+                if (usuario == null)
+                    return false;
+
+                usuario.Contraseña = contraseña;
+
+                await db.SaveChangesAsync(token);
+                return true;
+            }
+        }
     }
 }

@@ -18,6 +18,8 @@ namespace Registro_de_ventas_Codeplay.Models
         public string Nombre { get; set; } = string.Empty;
         public string Contraseña { get; set; } = string.Empty;
         public int IdRol { get; set; }
+        public string? PreguntaRec { get; set; }
+        public string? RespuestaRec { get; set; }
 
         // Para INNER JOIN en EF Core
         public Rol? Rol { get; set; }

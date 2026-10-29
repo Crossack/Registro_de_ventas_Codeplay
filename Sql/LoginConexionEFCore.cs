@@ -85,6 +85,10 @@ namespace Registro_de_ventas_Codeplay.Sql
                       .HasColumnName("IdRol")
                       .IsRequired();
 
+                entity.Property(u => u.PreguntaRec)
+                      .HasColumnName("PreguntaRec")
+                      .IsRequired();
+
                 entity.HasOne(u => u.Rol)
                       .WithMany()
                       .HasForeignKey(u => u.IdRol);
