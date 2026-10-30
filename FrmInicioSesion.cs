@@ -1,4 +1,7 @@
+using System;
 using System.Drawing;
+using System.Threading;
+using System.Windows.Forms;
 using Registro_de_ventas_Codeplay.Models;
 using Registro_de_ventas_Codeplay.Business;
 
@@ -23,9 +26,6 @@ namespace Registro_de_ventas_Codeplay
 
         private void BtnVerContraseña_Click(object sender, EventArgs e)
         {
-            //txtContraseña.UseSystemPasswordChar = verContraseña;
-            //verContraseña = !verContraseña;
-
             verContraseña = !verContraseña;
             txtContraseña.UseSystemPasswordChar = !verContraseña;
         }
@@ -35,7 +35,7 @@ namespace Registro_de_ventas_Codeplay
             btnLogin.Enabled = false;
             btnLogin.Text = "Procesando...";
             cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
-            
+
             try
             {
                 bool acceso = await loginNegocios.ValidarSesionAsync(txtUsuario.Text.Trim(), txtContraseña.Text, cts.Token);
@@ -45,9 +45,12 @@ namespace Registro_de_ventas_Codeplay
                     MessageBox.Show(
                        $"Bienvenido {SesionActiva.NombreUsuario} :)",
                        "Inicio de sesion exitoso",
-                       MessageBoxButtons.OK);
-                    DialogResult = DialogResult.OK;
-                    Close();
+                       MessageBoxButtons.OK,
+                       MessageBoxIcon.Information);
+
+                    // Notificamos a Program.cs que el login fue exitoso y cerramos esta ventana
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {
@@ -80,7 +83,7 @@ namespace Registro_de_ventas_Codeplay
             }
             finally
             {
-                cts.Dispose();
+                cts?.Dispose();
                 cts = null;
                 btnLogin.Enabled = true;
                 btnLogin.Text = "INGRESAR";
@@ -89,6 +92,7 @@ namespace Registro_de_ventas_Codeplay
 
         private void BtnSalir_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             Application.Exit();
         }
 
