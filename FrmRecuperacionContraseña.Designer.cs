@@ -57,7 +57,7 @@
             txtNombreUsuario.Name = "txtNombreUsuario";
             txtNombreUsuario.ReadOnly = false;
             txtNombreUsuario.Size = new Size(186, 28);
-            txtNombreUsuario.TabIndex = 0;
+            txtNombreUsuario.TabIndex = 1;
             txtNombreUsuario.TextAlignment = HorizontalAlignment.Left;
             txtNombreUsuario.UseSystemPasswordChar = false;
             txtNombreUsuario.Enter += TxtNombreUsuario_Enter;
@@ -76,7 +76,7 @@
             txtRespuestaPregunta.Name = "txtRespuestaPregunta";
             txtRespuestaPregunta.ReadOnly = false;
             txtRespuestaPregunta.Size = new Size(186, 28);
-            txtRespuestaPregunta.TabIndex = 1;
+            txtRespuestaPregunta.TabIndex = 2;
             txtRespuestaPregunta.TextAlignment = HorizontalAlignment.Left;
             txtRespuestaPregunta.UseSystemPasswordChar = false;
             // 
@@ -205,7 +205,7 @@
             btnCambiarContraseña.Name = "btnCambiarContraseña";
             btnCambiarContraseña.NoAccentTextColor = Color.Empty;
             btnCambiarContraseña.Size = new Size(86, 36);
-            btnCambiarContraseña.TabIndex = 2;
+            btnCambiarContraseña.TabIndex = 6;
             btnCambiarContraseña.Text = "Cambiar";
             btnCambiarContraseña.Type = ReaLTaiizor.Controls.MaterialButton.MaterialButtonType.Contained;
             btnCambiarContraseña.UseAccentColor = false;
@@ -225,7 +225,7 @@
             txtContraseña.Name = "txtContraseña";
             txtContraseña.ReadOnly = false;
             txtContraseña.Size = new Size(222, 28);
-            txtContraseña.TabIndex = 1;
+            txtContraseña.TabIndex = 5;
             txtContraseña.TextAlignment = HorizontalAlignment.Left;
             txtContraseña.UseSystemPasswordChar = false;
             // 
@@ -274,7 +274,7 @@
             btnSalir.RoundingInt = 70;
             btnSalir.Size = new Size(130, 44);
             btnSalir.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            btnSalir.TabIndex = 4;
+            btnSalir.TabIndex = 7;
             btnSalir.Tag = "Cyber";
             btnSalir.TextButton = "SALIR";
             btnSalir.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
@@ -286,7 +286,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(434, 313);
+            ClientSize = new Size(434, 312);
             Controls.Add(btnSalir);
             Controls.Add(grpCambioContraseña);
             Controls.Add(grpValidacion);

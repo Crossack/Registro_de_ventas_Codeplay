@@ -151,8 +151,54 @@ namespace Registro_de_ventas_Codeplay.Sql
                         }
                         return true;
                     }
+                    return false;
                 }
-                return false;
+            }
+        }
+
+        public async Task<List<Usuario>> SolicitarRegistroPorFecha(
+            DateTime fechaInicio, 
+            DateTime fechaFinal, 
+            CancellationToken token)
+        {
+            var tabla = new DataTable("Reporte de usuarios");
+            List<Usuario> lista = new();
+
+            const string sql = @"
+                SELECT u.Idusuario, u.NombreUsuario, u.FechaNac, u.CorreoElectronico, u.FechaRegistro, 
+                d.NombrePais, u.EstadoCuenta
+                FROM Usuario u
+                INNER JOIN Dispopais d ON u.Idpais = d.Idpais
+                WHERE u.FechaRegistro >= @FechaInicio
+                AND u.FechaRegistro < @FechaFinal
+                ORDER BY u.FechaRegistro";
+
+            using (SqlConnection conexion = Conexion.CrearConexion())
+            using (SqlCommand cmd = new(sql, conexion))
+            {
+                // Se usara Add y DateTime2 por optimizacion y rapidez
+                cmd.Parameters.Add(new SqlParameter("@FechaInicio", SqlDbType.DateTime2) { Value = fechaInicio.Date });
+                cmd.Parameters.Add(new SqlParameter("@FechaFinal", SqlDbType.DateTime2) { Value = fechaFinal.Date });
+
+                await conexion.OpenAsync(token);
+
+                using (SqlDataReader lector = await cmd.ExecuteReaderAsync(token))
+                {
+                    while (await lector.ReadAsync(token))
+                    {
+                        lista.Add(new Usuario
+                        {
+                            IdUsuario = lector.GetInt32(0),
+                            NombreUsuario = lector.GetString(1),
+                            FechaNacimiento = lector.GetDateTime(2),
+                            CorreoElectronico = lector.GetString(3),
+                            FechaRegistro = lector.GetDateTime(4),
+                            Pais = lector.GetString(5),
+                            EstadoCuenta = lector.GetBoolean(6)
+                        });
+                    }
+                    return lista;
+                }
             }
         }
     }

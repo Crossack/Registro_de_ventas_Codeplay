@@ -76,5 +76,10 @@ namespace Registro_de_ventas_Codeplay.Business
         {
             await usuarioDatos.DesactivarUsuarioAsync(idUsuario, token);
         }
+
+        public async Task<List<Usuario>> GenerarReportePorFechaAsync(DateTime desde, DateTime hasta, CancellationToken token)
+        {
+            return await usuarioDatos.SolicitarRegistroPorFecha(desde, hasta, token);
+        }
     }
 }

@@ -56,7 +56,7 @@ namespace Registro_de_ventas_Codeplay.Business
                 return (false, "Respuesta Incorrecta!");
             }
 
-            return (exito, "Todo en orden :)");
+            return (exito, "Acceso concedido, ingrese una nueva contraseña a continuacion");
         }
 
         public async Task<(bool Exito, string Mensaje)> CambiarContraseñaAsync(string? usuario, string contraseña, CancellationToken token)
@@ -72,7 +72,7 @@ namespace Registro_de_ventas_Codeplay.Business
                 return (false, "No se encontro el usuario!, intentelo de nuevo");
             }
 
-            return (exito, "Todo bien :)");
+            return (exito, "Se ha restablecido su contraseña correctamente");
         }
 
         public void CerrarSesion()

@@ -17,21 +17,27 @@ namespace Registro_de_ventas_Codeplay.Business
                 var hoja = workbook.Worksheets.Add("Usuarios Registrados");
 
                 // Titulo del reporte
+                hoja.Range("A1:G1").Merge();
                 hoja.Cell("A1").Value = "REPORTE DE USUARIOS REGISTRADOS";
                 hoja.Cell("A1").Style.Font.Bold = true;
                 hoja.Cell("A1").Style.Font.FontSize = 14;
-                hoja.Cell("A2").Value = $"Criterio: {tituloFiltro}";
+                hoja.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                hoja.Range("A2:G2").Merge();
+                hoja.Cell("A2").Value = tituloFiltro;
                 hoja.Cell("A2").Style.Font.Italic = true;
+                hoja.Cell("A2").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
                 int filaInicio = 4; // Para mantenimiento
                 hoja.Cell(filaInicio, 1).Value = "ID";
                 hoja.Cell(filaInicio, 2).Value = "Nombre Completo";
                 hoja.Cell(filaInicio, 3).Value = "Correo";
-                hoja.Cell(filaInicio, 4).Value = "Rol";
+                hoja.Cell(filaInicio, 4).Value = "Fecha Nacimiento";
                 hoja.Cell(filaInicio, 5).Value = "País";
                 hoja.Cell(filaInicio, 6).Value = "Fecha Registro";
+                hoja.Cell(filaInicio, 7).Value = "Estado actual";
 
-                var rangoCabecera = hoja.Range(filaInicio, 1, filaInicio, 6);
+
+                var rangoCabecera = hoja.Range(filaInicio, 1, filaInicio, 7);
                 rangoCabecera.Style.Font.Bold = true;
                 rangoCabecera.Style.Fill.BackgroundColor = XLColor.FromArgb(41, 128, 185); // Azul elegante
                 rangoCabecera.Style.Font.FontColor = XLColor.White;
@@ -42,14 +48,16 @@ namespace Registro_de_ventas_Codeplay.Business
                     hoja.Cell(filaActual, 1).Value = user.IdUsuario;
                     hoja.Cell(filaActual, 2).Value = user.NombreUsuario;
                     hoja.Cell(filaActual, 3).Value = user.CorreoElectronico;
-                    //hoja.Cell(filaActual, 4).Value = user.NombreRol;
+                    hoja.Cell(filaActual, 4).Value = user.FechaNacimiento;
+                    hoja.Cell(filaActual, 4).Style.DateFormat.Format = "yyyy-MM-dd";
                     hoja.Cell(filaActual, 5).Value = user.Pais;
                     hoja.Cell(filaActual, 6).Value = user.FechaRegistro;
                     hoja.Cell(filaActual, 6).Style.DateFormat.Format = "yyyy-MM-dd HH:mm";
+                    hoja.Cell(filaActual, 7).Value = user.EstadoCuenta;
                     filaActual++;
                 }
 
-                var rangoDatos = hoja.Range(filaInicio, 1, filaActual - 1, 6);
+                var rangoDatos = hoja.Range(filaInicio, 1, filaActual - 1, 7);
                 rangoDatos.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
                 rangoDatos.Style.Border.InsideBorder = XLBorderStyleValues.Thin;
                 hoja.Columns().AdjustToContents();
