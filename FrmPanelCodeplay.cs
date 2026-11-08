@@ -42,13 +42,14 @@ namespace Registro_de_ventas_Codeplay
             pnlMenuGenerarReporte.Visible = false;
         }
 
-        private void BtnMenuRegistroUsuarios_Click(object sender, EventArgs e)
+        private async void BtnMenuRegistroUsuarios_Click(object sender, EventArgs e)
         {
             Hide();
             using (frmRegistros registros = new frmRegistros())
             {
                 registros.ShowDialog();
             }
+            await CargarJugadores();
             Show();
         }
 
